@@ -9,6 +9,9 @@ import Map from "./map";
 import Profile from "./profile";
 import Register from "./register";
 import Users from "./users";
+import Admin from "./admin";
+import Tchat from "./tchat";
+import Order from "./order";
 
 const Main = () => (
   <Switch>
@@ -20,6 +23,9 @@ const Main = () => (
     <Route path="/profile" component={Profile} />
     <Route path="/register" component={Register} />
     <Route path="/users" component={Users} />
+    <Route path="/admin" component={Admin} />
+    <Route path="/tchat" component={Tchat} />
+    <Route path="/order" component={Order} />
   </Switch>
 );
 
