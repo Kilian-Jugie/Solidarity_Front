@@ -8,7 +8,7 @@ class Aboutus extends Component {
         <div style={{ width: "100%", margin: "auto" }}>
           <Grid className="aboutus-grid">
             <Cell col={12}>
-              <hr class="featurette-divider"></hr>
+              <hr className="featurette-divider"></hr>
               <div className="small">
                 <h1 className="coover">Qui sommes nous ?</h1>
                 <p>
@@ -19,15 +19,15 @@ class Aboutus extends Component {
                 </p>
               </div>
               <div className="container marketing">
-                <hr class="featurette-divider"></hr>
+                <hr className="featurette-divider"></hr>
               </div>
             </Cell>
           </Grid>
         </div>
-        <div class="container marketing row">
-          <div class="col-lg-4">
+        <div className="container marketing row">
+          <div className="col-lg-4">
             <svg
-              class="bd-placeholder-img rounded-circle"
+              className="bd-placeholder-img rounded-circle"
               width="140"
               height="140"
               xmlns="http://www.w3.org/2000/svg"
@@ -50,14 +50,14 @@ class Aboutus extends Component {
               Praesent commodo cursus magna.
             </p>
             <p>
-              <a class="btn btn-secondary" href="/" role="button">
+              <a className="btn btn-secondary" href="/" role="button">
                 View details »
               </a>
             </p>
           </div>
-          <div class="col-lg-4">
+          <div className="col-lg-4">
             <svg
-              class="bd-placeholder-img rounded-circle"
+              className="bd-placeholder-img rounded-circle"
               width="140"
               height="140"
               xmlns="http://www.w3.org/2000/svg"
@@ -80,14 +80,14 @@ class Aboutus extends Component {
               mauris condimentum nibh.
             </p>
             <p>
-              <a class="btn btn-secondary" href="/" role="button">
+              <a className="btn btn-secondary" href="/" role="button">
                 View details »
               </a>
             </p>
           </div>
-          <div class="col-lg-4">
+          <div className="col-lg-4">
             <svg
-              class="bd-placeholder-img rounded-circle"
+              className="bd-placeholder-img rounded-circle"
               width="140"
               height="140"
               xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +110,7 @@ class Aboutus extends Component {
               condimentum nibh, ut fermentum massa justo sit amet risus.
             </p>
             <p>
-              <a class="btn btn-secondary" href="/" role="button">
+              <a className="btn btn-secondary" href="/" role="button">
                 View details »
               </a>
             </p>

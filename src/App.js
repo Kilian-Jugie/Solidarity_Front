@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="demo-big-content">
       <Layout>
-        <Header className="header-color" title="Solidatrity Bond" scroll>
+        <Header className="header-color" title="Solidarity Bond" scroll>
           <Navigation>
             <Link to="/aboutus">A propos de nous</Link>
             <Link to="/contact">Contact</Link>

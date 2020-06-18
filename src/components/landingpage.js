@@ -143,23 +143,23 @@ class Landing extends Component {
           </a>
         </div>
         <div className="container marketing">
-          <hr class="featurette-divider"></hr>
-          <div class="row featurette">
-            <div class="col-md-7">
-              <h2 class="featurette-heading">
+          <hr className="featurette-divider"></hr>
+          <div className="row featurette">
+            <div className="col-md-7">
+              <h2 className="featurette-heading">
                 First featurette heading.{" "}
-                <span class="text-muted">It’ll blow your mind.</span>
+                <span className="text-muted">It’ll blow your mind.</span>
               </h2>
-              <p class="lead">
+              <p className="lead">
                 Donec ullamcorper nulla non metus auctor fringilla. Vestibulum
                 id ligula porta felis euismod semper. Praesent commodo cursus
                 magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus
                 ac cursus commodo.
               </p>
             </div>
-            <div class="col-md-5">
+            <div className="col-md-5">
               <svg
-                class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
                 width="500"
                 height="500"
                 xmlns="http://www.w3.org/2000/svg"
@@ -176,23 +176,23 @@ class Landing extends Component {
               </svg>
             </div>
           </div>
-          <hr class="featurette-divider"></hr>
-          <div class="row featurette">
-            <div class="col-md-7 order-md-2">
-              <h2 class="featurette-heading">
+          <hr className="featurette-divider"></hr>
+          <div className="row featurette">
+            <div className="col-md-7 order-md-2">
+              <h2 className="featurette-heading">
                 Oh yeah, it’s that good.{" "}
-                <span class="text-muted">See for yourself.</span>
+                <span className="text-muted">See for yourself.</span>
               </h2>
-              <p class="lead">
+              <p className="lead">
                 Donec ullamcorper nulla non metus auctor fringilla. Vestibulum
                 id ligula porta felis euismod semper. Praesent commodo cursus
                 magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus
                 ac cursus commodo.
               </p>
             </div>
-            <div class="col-md-5 order-md-1">
+            <div className="col-md-5 order-md-1">
               <svg
-                class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
                 width="500"
                 height="500"
                 xmlns="http://www.w3.org/2000/svg"
@@ -209,7 +209,7 @@ class Landing extends Component {
               </svg>
             </div>
           </div>
-          <hr class="featurette-divider"></hr>
+          <hr className="featurette-divider"></hr>
         </div>
       </div>
     );
