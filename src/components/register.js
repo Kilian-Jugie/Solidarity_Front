@@ -30,7 +30,6 @@ class Register extends Component {
                       class="form-control"
                       id="firstName"
                       placeholder="Nom"
-                      value=""
                       required=""
                     />
                     <div class="invalid-feedback">
@@ -44,7 +43,6 @@ class Register extends Component {
                       class="form-control"
                       id="lastName"
                       placeholder="Prénom"
-                      value=""
                       required=""
                     />
                     <div class="invalid-feedback">
@@ -86,6 +84,19 @@ class Register extends Component {
                 </div>
 
                 <div class="mb-3">
+                  <label for="password">Mot de passe</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Confirmez votre mot de passe"
+                  />
+                  <div class="invalid-feedback">
+                    Veuillez rentrer un mot de passe correct.
+                  </div>
+                </div>
+
+                <div class="mb-3">
                   <label for="society">Société</label>
                   <input
                     type="text"
@@ -112,49 +123,52 @@ class Register extends Component {
                 </div>
 
                 <div class="row">
-                  <div class="col-md-5 mb-3">
-                    <label for="country">Country</label>
+                  <div class="col-md-6 mb-3">
+                    <label for="role">Rôle</label>
                     <select
                       class="custom-select d-block w-100"
-                      id="country"
+                      id="role"
                       required=""
                     >
-                      <option value="">Choose...</option>
-                      <option>United States</option>
+                      <option value="">Choisir...</option>
+                      <option>Fonction Technique</option>
+                      <option>Fonction Commerciale</option>
+                      <option>Fonction Financière</option>
+                      <option>Fonction Sécurité</option>
+                      <option>Fonction Comptable</option>
+                      <option>Fonction Administrative</option>
+                      <option>Recherche et développement</option>
+                      <option>Dirigeant</option>
                     </select>
                     <div class="invalid-feedback">
-                      Please select a valid country.
+                      Sélectionnez un rôle valide.
                     </div>
                   </div>
-                  <div class="col-md-4 mb-3">
-                    <label for="state">State</label>
+                  <div class="col-md-6 mb-3">
+                    <label for="state">Type de rôle</label>
                     <select
                       class="custom-select d-block w-100"
                       id="state"
                       required=""
                     >
-                      <option value="">Choose...</option>
-                      <option>California</option>
+                      <option value="">Choisir...</option>
+                      <option>Administrateur</option>
+                      <option>Partenaire</option>
+                      <option>Client</option>
+                      <option>Fabricant</option>
                     </select>
                     <div class="invalid-feedback">
-                      Please provide a valid state.
+                      Veuillez fournir un rôle valide.
                     </div>
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="zip">Zip</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="zip"
-                      placeholder=""
-                      required=""
-                    />
-                    <div class="invalid-feedback">Zip code required.</div>
                   </div>
                 </div>
                 <hr class="mb-4"></hr>
-                <button class="btn btn-primary btn-lg btn-block" type="submit">
-                  Continue to checkout
+                <button
+                  id="but"
+                  class="btn btn-primary btn-lg btn-block"
+                  type="submit"
+                >
+                  S'inscrire
                 </button>
               </form>
             </div>

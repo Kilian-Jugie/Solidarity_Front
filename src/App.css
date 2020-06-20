@@ -302,3 +302,9 @@ h1.coover {
   justify-content: center;
   padding-top: 2em;
 }
+
+/* register.js */
+
+#but {
+  margin-bottom: 5em;
+}
