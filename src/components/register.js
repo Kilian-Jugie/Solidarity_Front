@@ -5,7 +5,7 @@ class Register extends Component {
     return (
       <div className="body">
         <div className="container">
-          <div className="py-5 text-center">
+          <div className="text-center">
             <img
               className="d-block mx-auto mb-4"
               src="https://image.flaticon.com/icons/svg/32/32039.svg"
@@ -58,7 +58,7 @@ class Register extends Component {
                       <span className="input-group-text">@</span>
                     </div>
                     <input
-                      type="text"
+                      type="email"
                       className="form-control"
                       id="username"
                       placeholder="vous@exemple.com"

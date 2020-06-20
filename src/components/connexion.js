@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Connexion extends Component {
   render() {
@@ -45,11 +46,15 @@ class Connexion extends Component {
 
           <div className="checkbox mb-3">
             <label>
-              <input type="checkbox" value="remember-me" /> Remember me
+              <input type="checkbox" value="remember-me" /> Se souvenir de moi
             </label>
           </div>
           <button className="btn btn-lg btn-primary btn-block" type="submit">
-            Sign in
+            Connexion
+          </button>
+          <button className="btn btn-lg btn-primary btn-block" type="submit">
+            <Link to="./register"></Link>
+            S'inscrire
           </button>
           <p className="mt-5 mb-3 text-muted text-center">© 2017-2020</p>
         </form>
