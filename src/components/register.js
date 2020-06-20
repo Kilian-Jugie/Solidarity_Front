@@ -5,61 +5,61 @@ class Register extends Component {
     return (
       <div className="body">
         <div className="container">
-          <div class="py-5 text-center">
+          <div className="py-5 text-center">
             <img
-              class="d-block mx-auto mb-4"
+              className="d-block mx-auto mb-4"
               src="https://image.flaticon.com/icons/svg/32/32039.svg"
               alt="NoteBookPaper"
               width="72"
               height="72"
             />
             <h2>Inscription</h2>
-            <p class="lead">
+            <p className="lead">
               Veuillez rentrer ci-dessous les informations nécessaire à votre
               inscription
             </p>
           </div>
-          <div class="row">
-            <div class="col-md-12 order-md-1">
-              <form class="needs-validation" novalidate="">
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <label for="firstName">Nom</label>
+          <div className="row">
+            <div className="col-md-12 order-md-1">
+              <form className="needs-validation" noValidate="">
+                <div className="row">
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="firstName">Nom</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       id="firstName"
                       placeholder="Nom"
                       required=""
                     />
-                    <div class="invalid-feedback">
+                    <div className="invalid-feedback">
                       Un nom valide est requis.
                     </div>
                   </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="lastName">Prénom</label>
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="lastName">Prénom</label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       id="lastName"
                       placeholder="Prénom"
                       required=""
                     />
-                    <div class="invalid-feedback">
+                    <div className="invalid-feedback">
                       Un prénom valide est requis
                     </div>
                   </div>
                 </div>
 
-                <div class="mb-3">
-                  <label for="username">Email</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">@</span>
+                <div className="mb-3">
+                  <label htmlFor="username">Email</label>
+                  <div className="input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">@</span>
                     </div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       id="username"
                       placeholder="vous@exemple.com"
                       required=""
@@ -70,63 +70,63 @@ class Register extends Component {
                   </div>
                 </div>
 
-                <div class="mb-3">
-                  <label for="password">Mot de passe</label>
+                <div className="mb-3">
+                  <label htmlFor="password">Mot de passe</label>
                   <input
                     type="password"
-                    class="form-control"
+                    className="form-control"
                     id="password"
                     placeholder=""
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
                     Veuillez rentrer un mot de passe correct.
                   </div>
                 </div>
 
-                <div class="mb-3">
-                  <label for="password">Mot de passe</label>
+                <div className="mb-3">
+                  <label htmlFor="password">Mot de passe</label>
                   <input
                     type="password"
-                    class="form-control"
+                    className="form-control"
                     id="password"
                     placeholder="Confirmez votre mot de passe"
                   />
-                  <div class="invalid-feedback">
+                  <div className="invalid-feedback">
                     Veuillez rentrer un mot de passe correct.
                   </div>
                 </div>
 
-                <div class="mb-3">
-                  <label for="society">Société</label>
+                <div className="mb-3">
+                  <label htmlFor="society">Société</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="society"
                     placeholder=""
                     required=""
                   />
                 </div>
 
-                <div class="mb-3">
-                  <label for="phone">Numéro de téléphone</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">+33</span>
+                <div className="mb-3">
+                  <label htmlFor="phone">Numéro de téléphone</label>
+                  <div className="input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">+33</span>
                     </div>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       id="phone"
                       placeholder=""
                     />
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <label for="role">Rôle</label>
+                <div className="row">
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="role">Rôle</label>
                     <select
-                      class="custom-select d-block w-100"
+                      className="custom-select d-block w-100"
                       id="role"
                       required=""
                     >
@@ -140,14 +140,14 @@ class Register extends Component {
                       <option>Recherche et développement</option>
                       <option>Dirigeant</option>
                     </select>
-                    <div class="invalid-feedback">
+                    <div className="invalid-feedback">
                       Sélectionnez un rôle valide.
                     </div>
                   </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="state">Type de rôle</label>
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="state">Type de rôle</label>
                     <select
-                      class="custom-select d-block w-100"
+                      className="custom-select d-block w-100"
                       id="state"
                       required=""
                     >
@@ -157,15 +157,15 @@ class Register extends Component {
                       <option>Client</option>
                       <option>Fabricant</option>
                     </select>
-                    <div class="invalid-feedback">
+                    <div className="invalid-feedback">
                       Veuillez fournir un rôle valide.
                     </div>
                   </div>
                 </div>
-                <hr class="mb-4"></hr>
+                <hr className="mb-4"></hr>
                 <button
                   id="but"
-                  class="btn btn-primary btn-lg btn-block"
+                  className="btn btn-primary btn-lg btn-block"
                   type="submit"
                 >
                   S'inscrire
