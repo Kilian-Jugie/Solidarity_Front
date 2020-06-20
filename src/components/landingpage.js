@@ -213,29 +213,30 @@ class Landing extends Component {
           <div class="item-grid grid-4 center">
             <h2 className="center">Outil mise à disposition</h2>
             <img
+              className="img"
               src="https://www.projet-coop.fr/wp-content/uploads/2019/08/Sans-titre-6.png"
               alt=""
             />
             <img
+              className="img"
               src="https://www.projet-coop.fr/wp-content/uploads/2019/08/Sans-titre-5.png"
               alt=""
             />
             <img
+              className="img"
               src="https://www.projet-coop.fr/wp-content/uploads/2019/08/Sans-titre-4.png"
               alt=""
             />
             <img
+              className="img"
               src="https://www.projet-coop.fr/wp-content/uploads/2019/08/Sans-titre-3.png"
               alt=""
             />
-            <br />
-            <br />
-            <br />
+            <hr className="featurette-divider"></hr>
           </div>
         </div>
       </div>
     );
   }
 }
-
 export default Landing;

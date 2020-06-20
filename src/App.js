@@ -29,7 +29,7 @@ function App() {
         <Drawer className="sheader-color" title="Solidatrity Bond">
           <Navigation>
             <a href="/profile">Profile</a>
-            <a href="https://www.makery.info/labs-map/">Maps</a>
+            <a href="/map">Maps</a>
             <a href="/tchat">Messagerie</a>
             <a href="/">Link</a>
           </Navigation>
