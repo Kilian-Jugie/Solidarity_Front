@@ -22,6 +22,8 @@ function App() {
             <Link to="/aboutus">A propos de nous</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/connexion">Connexion</Link>
+            <Link to="/register">Inscription</Link>
+            <Link to="/">Home</Link>
           </Navigation>
         </Header>
         <Drawer className="sheader-color" title="Solidatrity Bond">
