@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Map extends Component {
   render() {
     return (
-      <div>
+      <div className="body">
         <h1>Map Page</h1>
       </div>
     );
