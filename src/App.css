@@ -338,3 +338,10 @@ h1.coover {
 .fa-bar-chart {
   font-size: 5em;
 }
+/* Tchat page*/
+.formulaire {
+  padding: 2%;
+  margin-block-end: 10%;
+  margin-right: 20%;
+  margin-left: 20%;
+}
