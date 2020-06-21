@@ -332,3 +332,9 @@ h1.coover {
 #but {
   margin-bottom: 5em;
 }
+
+/* Admin Page */
+
+.fa-bar-chart {
+  font-size: 5em;
+}
