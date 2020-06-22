@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "react-mdl";
 
 class Connexion extends Component {
   render() {
@@ -49,6 +50,9 @@ class Connexion extends Component {
               <input type="checkbox" value="remember-me" /> Se souvenir de moi
             </label>
           </div>
+          <Button raised ripple>
+            Connexion
+          </Button>
           <button className="btn btn-lg btn-primary btn-block" type="submit">
             Connexion
           </button>
