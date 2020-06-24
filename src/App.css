@@ -90,6 +90,23 @@ h1.coover {
 .marketing .col-lg-4 {
   margin-bottom: 1.5rem;
   text-align: center;
+  font-size: 16px;
+}
+
+.coover {
+  max-width: 42em;
+}
+
+h1.coover {
+  font-size: 55px;
+}
+
+.aboutus-grid {
+  display: -ms-flexbox;
+  display: flex;
+  color: #fff;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
 }
 
 .carousel-item {
@@ -115,6 +132,13 @@ h1.coover {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+}
+.img {
+  margin-right: 2%;
+}
+
+.center {
+  text-align: center;
 }
 
 /* Connexion.js */
@@ -292,6 +316,7 @@ h1.coover {
 
 .contact-list p {
   font-size: 25px;
+
   font-family: "Anton";
   margin-right: 10.8rem;
 }
@@ -301,4 +326,15 @@ h1.coover {
   height: 100%;
   justify-content: center;
   padding-top: 2em;
+}
+/* register.js */
+
+#but {
+  margin-bottom: 5em;
+}
+
+/* Admin Page */
+
+.fa-bar-chart {
+  font-size: 5em;
 }

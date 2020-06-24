@@ -24,6 +24,7 @@ class Aboutus extends Component {
             </Cell>
           </Grid>
         </div>
+
         <div className="container marketing row">
           <div className="col-lg-4">
             <svg
@@ -120,5 +121,4 @@ class Aboutus extends Component {
     );
   }
 }
-
 export default Aboutus;

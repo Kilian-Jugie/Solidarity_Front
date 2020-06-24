@@ -22,14 +22,16 @@ function App() {
             <Link to="/aboutus">A propos de nous</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/connexion">Connexion</Link>
+            <Link to="/register">Inscription</Link>
+            <Link to="/">Home</Link>
           </Navigation>
         </Header>
         <Drawer className="sheader-color" title="Solidatrity Bond">
           <Navigation>
-            <a href="/profile">Profile</a>
-            <a href="/map">Maps</a>
-            <a href="/tchat">Messagerie</a>
-            <a href="/">Link</a>
+            <Link to="/profile">Profile</Link>
+            <a href="https://www.makery.info/labs-map/">Map</a>
+            <Link to="/tchat">Messagerie</Link>
+            <Link to="/">Link</Link>
           </Navigation>
         </Drawer>
         <Content>
