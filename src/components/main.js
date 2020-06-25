@@ -12,6 +12,7 @@ import Users from "./users";
 import Admin from "./admin";
 import Tchat from "./tchat";
 import Order from "./order";
+import Userlist from "./userlist";
 
 const Main = () => (
   <Switch>
@@ -26,6 +27,7 @@ const Main = () => (
     <Route path="/admin" component={Admin} />
     <Route path="/tchat" component={Tchat} />
     <Route path="/order" component={Order} />
+    <Route path="/userlist" component={Userlist} />
   </Switch>
 );
 

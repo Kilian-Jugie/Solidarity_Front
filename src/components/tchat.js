@@ -58,21 +58,6 @@ class Tchat extends Component {
                 <div className="col-md-12 order-md-1 ">
                   <form className="needs-validation" noValidate="">
                     <div className="mb-3 center">
-                      <label htmlFor="useremail">Email</label>
-                      <div className="input-group">
-                        <input
-                          type="email"
-                          className="form-control"
-                          id="useremail"
-                          placeholder="vous@exemple.com"
-                          required=""
-                        />
-                        <div className="invalid-feedback">
-                          Un Email valide est requis
-                        </div>
-                      </div>
-                    </div>
-                    <div className="mb-3 center">
                       <label htmlFor="destemail">Email du destinataire</label>
                       <div className="input-group">
                         <input
@@ -101,7 +86,7 @@ class Tchat extends Component {
                       className="btn btn-primary btn-lg btn-block"
                       type="submit"
                     >
-                      S'inscrire
+                      Envoyer
                     </button>
                   </form>
                 </div>

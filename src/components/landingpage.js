@@ -210,7 +210,7 @@ class Landing extends Component {
             </div>
           </div>
           <hr className="featurette-divider"></hr>
-          <div class="item-grid grid-4 center">
+          <div className="item-grid grid-4 center">
             <h2 className="center">Outil mise à disposition</h2>
             <img
               className="img"
