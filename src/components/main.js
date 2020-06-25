@@ -18,6 +18,8 @@ import Delrole from "./delrole";
 import Listrole from "./listrole";
 import Addusers from "./addusers";
 import Listusers from "./listusers";
+import Help from "./help";
+import Privacy from "./pvc";
 
 const Main = () => (
   <Switch>
@@ -38,6 +40,8 @@ const Main = () => (
     <Route path="/listrole" component={Listrole} />
     <Route path="/addusers" component={Addusers} />
     <Route path="/listusers" component={Listusers} />
+    <Route path="/help" component={Help} />
+    <Route path="/pvc" component={Privacy} />
   </Switch>
 );
 

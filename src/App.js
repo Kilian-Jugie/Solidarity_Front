@@ -59,10 +59,10 @@ function App() {
           <div className="page-content" />
           <Main />
           <Footer className="footer-color" size="mini">
-            <FooterSection type="left" logo="Title">
+            <FooterSection type="left" logo="Solidarity Bond">
               <FooterLinkList>
-                <a href="/">Help</a>
-                <a href="/">Privacy & Terms</a>
+                <a href="/help">Help</a>
+                <a href="/pvc">Privacy & Terms</a>
               </FooterLinkList>
             </FooterSection>
           </Footer>
