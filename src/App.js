@@ -13,8 +13,13 @@ import {
 import Main from "./components/main";
 import { Link } from "react-router-dom";
 
+function disconnect() {
+  document.cookie = "undefined";
+  window.location.reload();
+}
+
 function getHeader() {
-  if(document.cookie === undefined) {
+  if(document.cookie === "undefined") {
   return (
     <Navigation>
       <Link to="/aboutus">A propos de nous</Link>
@@ -29,7 +34,7 @@ function getHeader() {
       <Navigation>
         <Link to="/aboutus">A propos de nous</Link>
         <Link to="/contact">Contact</Link>
-        <Link to="/deconnexion">Deconnexion</Link>
+        <Link to="" onClick={disconnect}>Deconnexion</Link>
         <Link to="/">Home</Link>
       </Navigation>);
   }

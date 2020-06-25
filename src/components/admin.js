@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class Admin extends Component {
   render() {
-    if (document.cookie === undefined || document.cookie === "") {
+    if (document.cookie === "undefined") {
       alert("Seul les utilisateurs connectés ont accès à cette page");
       window.location.assign("..");
       return;
