@@ -9,9 +9,14 @@ class Admin extends Component {
     }
     try {
       var user = JSON.parse(document.cookie)["user"];
-      console.log(document.cookie);
       fetch("http://localhost:3000/api/users/" + user).then((res) => res.json()).then((result) => {
-        console.log(result);
+        fetch("http://localhost:3000/api/roles/" + result["ID_Role"]).then((res) => res.json()).then((fres) => {
+        if(fres["Label"]!=="Administrateur") {
+          alert("Seul les Administrateurs ont accès à cette page");
+          window.location.assign("..");
+          return;
+        }
+      });
       });
       
     }catch(e) {

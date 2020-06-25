@@ -36,7 +36,7 @@ class Connexion extends React.Component {
               alert("L'identifiant ou le mot de passe est incorrect");
               return;
             }
-            document.cookie = JSON.stringify({"user": result["email"]});
+            document.cookie = JSON.stringify({"user": Connexion.state["email"]});
             alert("Connexion réussi !");
             window.location.assign("..");
           });
