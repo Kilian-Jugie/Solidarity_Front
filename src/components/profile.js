@@ -11,7 +11,7 @@ class Profile extends Component {
 
   constructor(props) {
     super(props)
-    if(document.cookie === undefined || document.cookie === "") {
+    if(document.cookie === "undefined") {
       alert("Seul les utilisateurs connectés ont accès à cette page");
       window.location.assign("..");
       return;
