@@ -18,8 +18,10 @@ class Connexion extends React.Component {
           alert("L'identifiant ou le mot de passe est incorrect");
           return;
         }
+        var authkey = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" });
+        authkey.update(Connexion.state["password"]);
         var passHash = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" });
-        passHash.update(Connexion.state["password"]);
+        passHash.update(authkey.getHash("HEX"));
         passHash.update("connexion");
 
         fetch(
@@ -34,7 +36,9 @@ class Connexion extends React.Component {
               alert("L'identifiant ou le mot de passe est incorrect");
               return;
             }
-            document.cookie = JSON.stringify({"user": result["ID"]});
+            document.cookie = JSON.stringify({"user": result["email"]});
+            alert("Connexion réussi !");
+            window.location.assign("..");
           });
       });
   }

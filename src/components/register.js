@@ -14,10 +14,10 @@ class Register extends Component {
       alert("Les deux mots de passe ne correpondent pas");
       return;
     }
-    if(Register.state["role"] === "Administrateur") {
+    /*if(Register.state["role"] === "Administrateur") {
       alert("Le rôle administrateur n'est pas assignable automatiquement. Contactez les administrateurs");
       return;
-    }
+    }*/
 
     fetch("http://localhost:3000/api/users/" + Register.state["email"])
       .then((res) => res.json())
