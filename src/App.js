@@ -13,18 +13,34 @@ import {
 import Main from "./components/main";
 import { Link } from "react-router-dom";
 
+function getHeader() {
+  if(document.cookie === undefined) {
+  return (
+    <Navigation>
+      <Link to="/aboutus">A propos de nous</Link>
+      <Link to="/contact">Contact</Link>
+      <Link to="/connexion">Connexion</Link>
+      <Link to="/register">Inscription</Link>
+      <Link to="/">Home</Link>
+    </Navigation>);
+  }
+  else {
+    return (
+      <Navigation>
+        <Link to="/aboutus">A propos de nous</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="/deconnexion">Deconnexion</Link>
+        <Link to="/">Home</Link>
+      </Navigation>);
+  }
+}
+
 function App() {
   return (
     <div className="demo-big-content">
       <Layout>
         <Header className="header-color" title="Solidarity Bond" scroll>
-          <Navigation>
-            <Link to="/aboutus">A propos de nous</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/connexion">Connexion</Link>
-            <Link to="/register">Inscription</Link>
-            <Link to="/">Home</Link>
-          </Navigation>
+          {getHeader()}
         </Header>
         <Drawer className="sheader-color" title="Solidatrity Bond">
           <Navigation>
