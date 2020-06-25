@@ -1,14 +1,71 @@
 import React, { Component } from "react";
 import { Tabs, Tab } from "react-mdl";
+var Name = ' ';
+var message = ' ';
+
+function controle() {
+  var Email = JSON.parse(document.cookie)["user"];
+
+  fetch("http://localhost:3000/api/users/" + Email)
+    .then((res) => res.json())
+    .then((result) => {
+      Name = result["Nom"];
+      alert(Name)
+      alert(result["ID"])
+
+      fetch("http://localhost:3000/api/messages/" + result["ID"])
+        .then((res) => res.json())
+        .then((result) => {
+          var data = [
+            message = result["0"]["Content"],
+          ]
+          alert(data)
+        })
+    })
+
+}
+
 class Tchat extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeTab: 2 };
+    this.state = { activeTab: 0 };
+  }
+  static state = {};
+
+  static handleChange(event) {
+    Tchat.state[event.target.name] = event.target.value;
   }
 
+  static handleSubmit(event) {
+    event.preventDefault();
+    fetch("http://localhost:3000/api/users/" + Tchat.state["email"])
+      .then((res) => res.json())
+      .then((result) => {
+        var id_destinataire = result["ID"]
+        alert(id_destinataire);//renvoie 2
+        alert(Tchat.state["user_message"]);//renvoie premier message
+        fetch("http://localhost:3000/api/users/" + JSON.parse(document.cookie)["user"])
+          .then((res) => res.json())
+          .then((result) => {
+            alert(result["ID"]) // renvoie 3 
+            fetch("http://localhost:3000/api/messages/" + result["ID"], { ///messages/{id l'expediteur}
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                "toid": id_destinataire,   // JSON avec champs : toid(int) [id du destinataire], text(string) [texte du message]
+                "text": Tchat.state["user_message"]
+              })
+            });
+          });
+      });
+  }
   render() {
     return (
-      <div>
+
+      < div >
+
         <h1 className="center">Messagerie</h1>
         <div className="demo-tabs">
           <Tabs
@@ -17,7 +74,7 @@ class Tchat extends Component {
             ripple
           >
             <Tab>Dernier message</Tab>
-            <Tab>Historique Message</Tab>
+            <Tab onClick={controle}>Historique Message</Tab>
             <Tab>Envoyer un message</Tab>
           </Tabs>
           <section>
@@ -44,10 +101,8 @@ class Tchat extends Component {
                     </text>
                   </svg>
                   <p className="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong className="d-block text-gray-dark">Nom user</strong>
-                    Donec id elit non mi porta gravida at eget metus. Fusce
-                    dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                    nibh, ut fermentum massa justo sit amet risus.
+                    <strong className="d-block text-gray-dark">{Name}</strong>
+                    {message}
                   </p>
                 </div>
               </div>
@@ -56,7 +111,7 @@ class Tchat extends Component {
             {this.state.activeTab === 2 && (
               <div className="row formulaire">
                 <div className="col-md-12 order-md-1 ">
-                  <form className="needs-validation" noValidate="">
+                  <form className="needs-validation" noValidate="" onSubmit={Tchat.handleSubmit}>
                     <div className="mb-3 center">
                       <label htmlFor="destemail">Email du destinataire</label>
                       <div className="input-group">
@@ -66,6 +121,8 @@ class Tchat extends Component {
                           id="destemail"
                           placeholder="email.destinaire@exemple.com"
                           required=""
+                          name="email"
+                          onChange={Tchat.handleChange}
                         />
                         <div className="invalid-feedback">
                           Un Email valide est requis
@@ -74,11 +131,11 @@ class Tchat extends Component {
                     </div>
                     <div className="center">
                       <div className="center">
-                        <label for="msg" style={{ textAlign: "center" }}>
+                        <label htmlFor="msg" style={{ textAlign: "center" }}>
                           Message:
                         </label>
                       </div>
-                      <textarea id="msg" name="user_message"></textarea>
+                      <textarea id="msg" name="user_message" onChange={Tchat.handleChange}></textarea>
                     </div>
                     <hr className="mb-4"></hr>
                     <button
@@ -94,7 +151,7 @@ class Tchat extends Component {
             )}
           </section>
         </div>
-      </div>
+      </div >
     );
   }
 }

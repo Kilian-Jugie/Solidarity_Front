@@ -1,62 +1,51 @@
 import React, { Component } from "react";
-function controle() {
-  var form = document.getElementById("form");
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var nom = document.getElementById("firstName").value;
-    var prenom = document.getElementById("lastName").value;
-    var Email = document.getElementById("username").value;
-    var mdp = document.getElementById("password").value;
-    var mdp2 = document.getElementById("comfirmpassword").value;
-    //var Description = document.getElementById("society").value;
-    //var entrepriserole = document.getElementById("role").value;
-    var role = document.getElementById("state").value;
-    var Url =
-      "http://localhost:3000/api/users?lasname&firstname&email&description&authkey&rolename";
-    if (mdp === mdp2) {
-      fetch(Url, {
-        method: "POST",
-        body: JSON.stringify({
-          lastname: nom,
-          firstname: prenom,
-          email: Email,
-          description: "je suis une description",
-          authkey: mdp,
-          rolename: role,
-        }),
-        headers: {
-          "Content-type": "application/json ; charset=UTF-8 ",
-          "host": "localhost:3000",
-          "Cache-Control": "no-cache",
-          "Connection": "keep-alive",
-          "Access-Control-Allow-Origin": "null",
-        },
-      })
-        .then(function (response) {
-          return response.json;
-        })
-        .then(function (data) {
-          console.log(data);
-        });
-    } else {
-      alert("mot de passe de comfirmation mauvais");
-    }
-  });
-}
-/* 
-  if (mdp === mdp2) {
-    alert("vous avez saisie : " + nom);
-    alert("vous avez saisie : " + prenom);
-    alert("vous avez saisie : " + email);
-    alert("vous avez saisie : " + mdp);
-    alert("vous avez saisie : " + description);
-    alert("vous avez saisie : " + entrepriserole);
-    alert("vous avez saisie : " + role);
-    alert(Url);
-  } else {
-    alert("mot de passe de comfirmation mauvais");
-*/
+import jsSHA from "jssha";
+
 class Register extends Component {
+  static state = {};
+
+  static handleChange(event) {
+    Register.state[event.target.name] = event.target.value;
+  }
+
+  static handleSubmit(event) {
+    event.preventDefault();
+    if (Register.state["password1"] !== Register.state["password2"]) {
+      alert("Les deux mots de passe ne correpondent pas");
+      return;
+    }
+    /*if(Register.state["role"] === "Administrateur") {
+      alert("Le rôle administrateur n'est pas assignable automatiquement. Contactez les administrateurs");
+      return;
+    }*/
+
+    fetch("http://localhost:3000/api/users/" + Register.state["email"])
+      .then((res) => res.json())
+      .then((result) => {
+        if (result["type"] === undefined) {
+          alert("Un utilisateur avec cette adresse email existe déjà");
+          return;
+        }
+        var passHash = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" });
+        passHash.update(Register.state["password1"]);
+
+        fetch("http://localhost:3000/api/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            "firstname": Register.state["firstname"],
+            "lastname": Register.state["lastname"],
+            "email": Register.state["email"],
+            "description": "",
+            "authkey": passHash.getHash("HEX"),
+            "rolename": Register.state["role"]
+          })
+        });
+      });
+  }
+
   render() {
     return (
       <div className="body">
@@ -77,32 +66,37 @@ class Register extends Component {
           </div>
           <div className="row">
             <div className="col-md-12 order-md-1">
-              <form
-                className="needs-validation"
-                id="form"
-                method="post"
-                noValidate=""
-              >
+              <form className="needs-validation" noValidate="" onSubmit={Register.handleSubmit}>
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label htmlFor="firstName">Nom</label>
+                    <label htmlFor="firstName">Prénom</label>
                     <input
                       type="text"
                       className="form-control"
                       id="firstName"
-                      placeholder="Nom"
-                      required=""
+                      placeholder="Prénom"
+                      name="firstname"
+                      onChange={Register.handleChange}
+                      required={true}
                     />
+                    <div className="invalid-feedback">
+                      Un Prénom valide est requis.
+                    </div>
                   </div>
                   <div className="col-md-6 mb-3">
-                    <label htmlFor="lastName">Prénom</label>
+                    <label htmlFor="lastName">Nom</label>
                     <input
                       type="text"
                       className="form-control"
                       id="lastName"
-                      placeholder="Prénom"
-                      required=""
+                      placeholder="Nom"
+                      name="lastname"
+                      onChange={Register.handleChange}
+                      required={true}
                     />
+                    <div className="invalid-feedback">
+                      Un nom valide est requis
+                    </div>
                   </div>
                 </div>
 
@@ -117,8 +111,13 @@ class Register extends Component {
                       className="form-control"
                       id="username"
                       placeholder="vous@exemple.com"
-                      required=""
+                      name="email"
+                      onChange={Register.handleChange}
+                      required={true}
                     />
+                    <div className="invalid-feedback">
+                      Un Email valide est requis
+                    </div>
                   </div>
                 </div>
 
@@ -127,9 +126,15 @@ class Register extends Component {
                   <input
                     type="password"
                     className="form-control"
-                    id="password"
+                    id="password1"
+                    name="password1"
+                    onChange={Register.handleChange}
                     placeholder=""
+                    required={true}
                   />
+                  <div className="invalid-feedback">
+                    Veuillez rentrer un mot de passe correct.
+                  </div>
                 </div>
 
                 <div className="mb-3">
@@ -137,29 +142,57 @@ class Register extends Component {
                   <input
                     type="password"
                     className="form-control"
-                    id="comfirmpassword"
+                    id="password2"
+                    name="password2"
+                    onChange={Register.handleChange}
                     placeholder="Confirmez votre mot de passe"
+                    required={true}
                   />
+                  <div className="invalid-feedback">
+                    Veuillez rentrer un mot de passe correct.
+                  </div>
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="society">Société</label>
+                  <label htmlFor="society">Société (facultatif)</label>
                   <input
                     type="text"
                     className="form-control"
                     id="society"
+                    name="society"
+                    onChange={Register.handleChange}
                     placeholder=""
-                    required=""
+                    required={false}
                   />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="phone">Numéro de téléphone (facultatif)</label>
+                  <div className="input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">+33</span>
+                    </div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="phone"
+                      name="phone"
+                      onChange={Register.handleChange}
+                      placeholder=""
+                      required={false}
+                    />
+                  </div>
                 </div>
 
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label htmlFor="role">Rôle</label>
+                    <label htmlFor="role">Fonction en société (facultatif)</label>
                     <select
                       className="custom-select d-block w-100"
                       id="role"
-                      required=""
+                      name="function"
+                      onChange={Register.handleChange}
+                      required={false}
                     >
                       <option value="">Choisir...</option>
                       <option>Fonction Technique</option>
@@ -180,13 +213,15 @@ class Register extends Component {
                     <select
                       className="custom-select d-block w-100"
                       id="state"
-                      required=""
+                      name="role"
+                      onChange={Register.handleChange}
+                      required={true}
                     >
                       <option value="">Choisir...</option>
-                      <option value="2">Administrateur</option>
-                      <option value="3">Partenaire</option>
-                      <option value="1">Client</option>
-                      <option value="4">Fabricant</option>
+                      <option>Administrateur</option>
+                      <option>Partenaire</option>
+                      <option>Client</option>
+                      <option>Fabricant</option>
                     </select>
                     <div className="invalid-feedback">
                       Veuillez fournir un rôle valide.
@@ -198,7 +233,6 @@ class Register extends Component {
                   id="but"
                   className="btn btn-primary btn-lg btn-block"
                   type="submit"
-                  onClick={controle}
                 >
                   S'inscrire
                 </button>
