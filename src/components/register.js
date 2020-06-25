@@ -1,5 +1,61 @@
 import React, { Component } from "react";
-
+function controle() {
+  var form = document.getElementById("form");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var nom = document.getElementById("firstName").value;
+    var prenom = document.getElementById("lastName").value;
+    var Email = document.getElementById("username").value;
+    var mdp = document.getElementById("password").value;
+    var mdp2 = document.getElementById("comfirmpassword").value;
+    //var Description = document.getElementById("society").value;
+    //var entrepriserole = document.getElementById("role").value;
+    var role = document.getElementById("state").value;
+    var Url =
+      "http://localhost:3000/api/users?lasname&firstname&email&description&authkey&rolename";
+    if (mdp === mdp2) {
+      fetch(Url, {
+        method: "POST",
+        body: JSON.stringify({
+          lastname: nom,
+          firstname: prenom,
+          email: Email,
+          description: "je suis une description",
+          authkey: mdp,
+          rolename: role,
+        }),
+        headers: {
+          "Content-type": "application/json ; charset=UTF-8 ",
+          "host": "localhost:3000",
+          "Cache-Control": "no-cache",
+          "Connection": "keep-alive",
+          "Access-Control-Allow-Origin": "null",
+        },
+      })
+        .then(function (response) {
+          return response.json;
+        })
+        .then(function (data) {
+          console.log(data);
+        });
+    } else {
+      alert("mot de passe de comfirmation mauvais");
+    }
+  });
+}
+/* 
+  if (mdp === mdp2) {
+    alert("vous avez saisie : " + nom);
+    alert("vous avez saisie : " + prenom);
+    alert("vous avez saisie : " + email);
+    alert("vous avez saisie : " + mdp);
+    alert("vous avez saisie : " + description);
+    alert("vous avez saisie : " + entrepriserole);
+    alert("vous avez saisie : " + role);
+    alert(Url);
+  } else {
+    alert("mot de passe de comfirmation mauvais");
+*/
 class Register extends Component {
   render() {
     return (
@@ -21,7 +77,12 @@ class Register extends Component {
           </div>
           <div className="row">
             <div className="col-md-12 order-md-1">
-              <form className="needs-validation" noValidate="">
+              <form
+                className="needs-validation"
+                id="form"
+                method="post"
+                noValidate=""
+              >
                 <div className="row">
                   <div className="col-md-6 mb-3">
                     <label htmlFor="firstName">Nom</label>
@@ -32,9 +93,6 @@ class Register extends Component {
                       placeholder="Nom"
                       required=""
                     />
-                    <div className="invalid-feedback">
-                      Un nom valide est requis.
-                    </div>
                   </div>
                   <div className="col-md-6 mb-3">
                     <label htmlFor="lastName">Prénom</label>
@@ -45,9 +103,6 @@ class Register extends Component {
                       placeholder="Prénom"
                       required=""
                     />
-                    <div className="invalid-feedback">
-                      Un prénom valide est requis
-                    </div>
                   </div>
                 </div>
 
@@ -64,9 +119,6 @@ class Register extends Component {
                       placeholder="vous@exemple.com"
                       required=""
                     />
-                    <div className="invalid-feedback">
-                      Un Email valide est requis
-                    </div>
                   </div>
                 </div>
 
@@ -78,9 +130,6 @@ class Register extends Component {
                     id="password"
                     placeholder=""
                   />
-                  <div className="invalid-feedback">
-                    Veuillez rentrer un mot de passe correct.
-                  </div>
                 </div>
 
                 <div className="mb-3">
@@ -88,12 +137,9 @@ class Register extends Component {
                   <input
                     type="password"
                     className="form-control"
-                    id="password"
+                    id="comfirmpassword"
                     placeholder="Confirmez votre mot de passe"
                   />
-                  <div className="invalid-feedback">
-                    Veuillez rentrer un mot de passe correct.
-                  </div>
                 </div>
 
                 <div className="mb-3">
@@ -105,21 +151,6 @@ class Register extends Component {
                     placeholder=""
                     required=""
                   />
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="phone">Numéro de téléphone</label>
-                  <div className="input-group">
-                    <div className="input-group-prepend">
-                      <span className="input-group-text">+33</span>
-                    </div>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="phone"
-                      placeholder=""
-                    />
-                  </div>
                 </div>
 
                 <div className="row">
@@ -152,10 +183,10 @@ class Register extends Component {
                       required=""
                     >
                       <option value="">Choisir...</option>
-                      <option>Administrateur</option>
-                      <option>Partenaire</option>
-                      <option>Client</option>
-                      <option>Fabricant</option>
+                      <option value="2">Administrateur</option>
+                      <option value="3">Partenaire</option>
+                      <option value="1">Client</option>
+                      <option value="4">Fabricant</option>
                     </select>
                     <div className="invalid-feedback">
                       Veuillez fournir un rôle valide.
@@ -167,6 +198,7 @@ class Register extends Component {
                   id="but"
                   className="btn btn-primary btn-lg btn-block"
                   type="submit"
+                  onClick={controle}
                 >
                   S'inscrire
                 </button>
