@@ -3,6 +3,27 @@ import { IconButton, Menu, MenuItem } from "react-mdl";
 import { Link } from "react-router-dom";
 
 class Profile extends Component {
+  static getDisplayedName() {
+    
+  }
+
+  displayedName = "";
+
+  constructor(props) {
+    super(props)
+    if(document.cookie === undefined || document.cookie === "") {
+      alert("Seul les utilisateurs connectés ont accès à cette page");
+      window.location.assign("..");
+      return;
+    }
+    var c = JSON.parse(document.cookie);
+    fetch("http://localhost:3000/api/users/"+c["user"]).then((res) => res.json()).then((res) => {
+      this.displayedName = res["Nom"]+" "+res["Premon"];
+      console.log(this.displayedName);
+      this.forceUpdate();
+    });
+  }
+
   render() {
     return (
       <div className="body">
@@ -26,7 +47,7 @@ class Profile extends Component {
                 </text>
               </svg>
               <div style={{ position: "relative" }}>
-                <h2>Nom Prénoms</h2>
+                <h2>{this.displayedName}</h2>
                 <IconButton name="more_vert" id="demo-menu-lower-left" />
                 <Menu target="demo-menu-lower-left">
                   <Link to="/connexion">
