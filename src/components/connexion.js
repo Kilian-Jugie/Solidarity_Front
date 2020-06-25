@@ -40,7 +40,7 @@ class Connexion extends React.Component {
               alert("L'identifiant ou le mot de passe est incorrect");
               return;
             }
-            document.cookie = "connected=true";
+            document.cookie = JSON.stringify({"user": result["ID"]});
           });
       });
   }
