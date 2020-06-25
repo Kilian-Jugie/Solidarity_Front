@@ -4,11 +4,6 @@ import jsSHA from "jssha";
 class Connexion extends React.Component {
   static state = {};
 
-  static connection() {
-    console.log("heh2e");
-    console.log(Connexion.state);
-  }
-
   static handleChange(event) {
     Connexion.state[event.target.name] = event.target.value;
   }
@@ -23,7 +18,6 @@ class Connexion extends React.Component {
           alert("L'identifiant ou le mot de passe est incorrect");
           return;
         }
-        console.log(result);
         var passHash = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" });
         passHash.update(Connexion.state["password"]);
         passHash.update("connexion");
@@ -40,7 +34,7 @@ class Connexion extends React.Component {
               alert("L'identifiant ou le mot de passe est incorrect");
               return;
             }
-            document.cookie = "connected=true";
+            document.cookie = JSON.stringify({"user": result["ID"]});
           });
       });
   }

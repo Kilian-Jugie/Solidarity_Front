@@ -1,6 +1,50 @@
 import React, { Component } from "react";
+import jsSHA from "jssha";
 
 class Register extends Component {
+  static state = {};
+
+  static handleChange(event) {
+    Register.state[event.target.name] = event.target.value;
+  }
+
+  static handleSubmit(event) {
+    event.preventDefault();
+    if(Register.state["password1"] !== Register.state["password2"]) {
+      alert("Les deux mots de passe ne correpondent pas");
+      return;
+    }
+    if(Register.state["role"] === "Administrateur") {
+      alert("Le rôle administrateur n'est pas assignable automatiquement. Contactez les administrateurs");
+      return;
+    }
+
+    fetch("http://localhost:3000/api/users/" + Register.state["email"])
+      .then((res) => res.json())
+      .then((result) => {
+        if (result["type"] === undefined) {
+          alert("Un utilisateur avec cette adresse email existe déjà");
+          return;
+        }
+        var passHash = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" });
+        passHash.update(Register.state["password1"]);
+
+        fetch("http://localhost:3000/api/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+           body: JSON.stringify({
+            "firstname": Register.state["firstname"],
+            "lastname": Register.state["lastname"],
+            "email": Register.state["email"],
+            "description": "",
+            "authkey": passHash.getHash("HEX"),
+            "rolename": Register.state["role"]
+           })});
+      });
+  }
+
   render() {
     return (
       <div className="body">
@@ -21,32 +65,36 @@ class Register extends Component {
           </div>
           <div className="row">
             <div className="col-md-12 order-md-1">
-              <form className="needs-validation" noValidate="">
+              <form className="needs-validation" noValidate="" onSubmit={Register.handleSubmit}>
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label htmlFor="firstName">Nom</label>
+                    <label htmlFor="firstName">Prénom</label>
                     <input
                       type="text"
                       className="form-control"
                       id="firstName"
-                      placeholder="Nom"
-                      required=""
+                      placeholder="Prénom"
+                      name="firstname"
+                      onChange={Register.handleChange}
+                      required={true}
                     />
                     <div className="invalid-feedback">
-                      Un nom valide est requis.
+                      Un Prénom valide est requis.
                     </div>
                   </div>
                   <div className="col-md-6 mb-3">
-                    <label htmlFor="lastName">Prénom</label>
+                    <label htmlFor="lastName">Nom</label>
                     <input
                       type="text"
                       className="form-control"
                       id="lastName"
-                      placeholder="Prénom"
-                      required=""
+                      placeholder="Nom"
+                      name="lastname"
+                      onChange={Register.handleChange}
+                      required={true}
                     />
                     <div className="invalid-feedback">
-                      Un prénom valide est requis
+                      Un nom valide est requis
                     </div>
                   </div>
                 </div>
@@ -62,7 +110,9 @@ class Register extends Component {
                       className="form-control"
                       id="username"
                       placeholder="vous@exemple.com"
-                      required=""
+                      name="email"
+                      onChange={Register.handleChange}
+                      required={true}
                     />
                     <div className="invalid-feedback">
                       Un Email valide est requis
@@ -75,8 +125,11 @@ class Register extends Component {
                   <input
                     type="password"
                     className="form-control"
-                    id="password"
+                    id="password1"
+                    name="password1"
+                    onChange={Register.handleChange}
                     placeholder=""
+                    required={true}
                   />
                   <div className="invalid-feedback">
                     Veuillez rentrer un mot de passe correct.
@@ -88,8 +141,11 @@ class Register extends Component {
                   <input
                     type="password"
                     className="form-control"
-                    id="password"
+                    id="password2"
+                    name="password2"
+                    onChange={Register.handleChange}
                     placeholder="Confirmez votre mot de passe"
+                    required={true}
                   />
                   <div className="invalid-feedback">
                     Veuillez rentrer un mot de passe correct.
@@ -97,18 +153,20 @@ class Register extends Component {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="society">Société</label>
+                  <label htmlFor="society">Société (facultatif)</label>
                   <input
                     type="text"
                     className="form-control"
                     id="society"
+                    name="society"
+                    onChange={Register.handleChange}
                     placeholder=""
-                    required=""
+                    required={false}
                   />
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="phone">Numéro de téléphone</label>
+                  <label htmlFor="phone">Numéro de téléphone (facultatif)</label>
                   <div className="input-group">
                     <div className="input-group-prepend">
                       <span className="input-group-text">+33</span>
@@ -117,18 +175,23 @@ class Register extends Component {
                       type="text"
                       className="form-control"
                       id="phone"
+                      name="phone"
+                      onChange={Register.handleChange}
                       placeholder=""
+                      required={false}
                     />
                   </div>
                 </div>
 
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label htmlFor="role">Rôle</label>
+                    <label htmlFor="role">Fonction en société (facultatif)</label>
                     <select
                       className="custom-select d-block w-100"
                       id="role"
-                      required=""
+                      name="function"
+                      onChange={Register.handleChange}
+                      required={false}
                     >
                       <option value="">Choisir...</option>
                       <option>Fonction Technique</option>
@@ -149,7 +212,9 @@ class Register extends Component {
                     <select
                       className="custom-select d-block w-100"
                       id="state"
-                      required=""
+                      name="role"
+                      onChange={Register.handleChange}
+                      required={true}
                     >
                       <option value="">Choisir...</option>
                       <option>Administrateur</option>
