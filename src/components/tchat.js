@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Tabs, Tab } from "react-mdl";
+import { Tabs, Tab, Content } from "react-mdl";
 var Name = ' ';
 var message = ' ';
-
-function controle() {
+var Donner;
+function derniermessage() {
   var Email = JSON.parse(document.cookie)["user"];
 
   fetch("http://localhost:3000/api/users/" + Email)
@@ -16,15 +16,30 @@ function controle() {
       fetch("http://localhost:3000/api/messages/" + result["ID"])
         .then((res) => res.json())
         .then((result) => {
-          var data = [
-            message = result["0"]["Content"],
-          ]
-          alert(data)
-        })
+          alert("je suis le dernier message : " + result[result.length - 1]["Content"])
+          alert("je suis lid du dernier message : " + result[result.length - 1]["ID"])
+          message = result[result.length - 1]["Content"]
+        });
     })
 
 }
+function historiqueMessage() {
+  fetch("http://localhost:3000/api/users/" + JSON.parse(document.cookie)["user"])
+    .then((res) => res.json())
+    .then((result) => {
+      fetch("http://localhost:3000/api/messages/" + result["ID"])
+        .then((res) => res.json())
+        .then((result) => {
+          alert(result[result.length - 1]["ID_Account"])
+          for (let x = 0; x > (result[result.length - 1]["ID_Account"]); x++) {
+            Donner = [
+              result[x]["Content"]
 
+            ]
+          } alert("voici les donnes :" + Donner)
+        });
+    });
+}
 class Tchat extends Component {
   constructor(props) {
     super(props);
@@ -42,8 +57,8 @@ class Tchat extends Component {
       .then((res) => res.json())
       .then((result) => {
         var id_destinataire = result["ID"]
-        alert(id_destinataire);//renvoie 2
-        alert(Tchat.state["user_message"]);//renvoie premier message
+        //alert(id_destinataire);//renvoie 2
+        //alert(Tchat.state["user_message"]);//renvoie premier message
         fetch("http://localhost:3000/api/users/" + JSON.parse(document.cookie)["user"])
           .then((res) => res.json())
           .then((result) => {
@@ -55,9 +70,12 @@ class Tchat extends Component {
               },
               body: JSON.stringify({
                 "toid": id_destinataire,   // JSON avec champs : toid(int) [id du destinataire], text(string) [texte du message]
-                "text": Tchat.state["user_message"]
+                "text": Tchat.state["user_message"],
+
               })
+
             });
+            alert('message envoyer');
           });
       });
   }
@@ -74,7 +92,7 @@ class Tchat extends Component {
             ripple
           >
             <Tab>Dernier message</Tab>
-            <Tab onClick={controle}>Historique Message</Tab>
+            <Tab>Historique Message</Tab>
             <Tab>Envoyer un message</Tab>
           </Tabs>
           <section>
@@ -105,9 +123,22 @@ class Tchat extends Component {
                     {message}
                   </p>
                 </div>
+                <button onClick={derniermessage}>
+                  refresh
+                    </button>
               </div>
             )}
-            {this.state.activeTab === 1 && <h1>Mettre les messages </h1>}
+            {this.state.activeTab === 1 && (
+              <div>
+                <h1 className="center" >Mettre les messages </h1>
+                <button onClick={historiqueMessage}>
+                  refresh
+                </button>
+                <ul>
+                  <li>{Donner}</li>
+                </ul>
+              </div>
+            )}
             {this.state.activeTab === 2 && (
               <div className="row formulaire">
                 <div className="col-md-12 order-md-1 ">
@@ -145,6 +176,7 @@ class Tchat extends Component {
                     >
                       Envoyer
                     </button>
+
                   </form>
                 </div>
               </div>
