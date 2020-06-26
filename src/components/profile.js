@@ -8,6 +8,8 @@ class Profile extends Component {
   }
 
   displayedName = "";
+  displayedEmail = "";
+  displayedRole = "";
 
   constructor(props) {
     super(props)
@@ -19,8 +21,11 @@ class Profile extends Component {
     var c = JSON.parse(document.cookie);
     fetch("http://localhost:3000/api/users/"+c["user"]).then((res) => res.json()).then((res) => {
       this.displayedName = res["Nom"]+" "+res["Premon"];
-      console.log(this.displayedName);
-      this.forceUpdate();
+      this.displayedEmail = c["user"];
+      fetch("http://localhost:3000/api/roles/"+res["ID_Role"]).then((res2) => res2.json()).then((res2) => {
+        this.displayedRole = res2["Label"];
+        this.forceUpdate();
+      });
     });
   }
 
@@ -48,6 +53,8 @@ class Profile extends Component {
               </svg>
               <div style={{ position: "relative" }}>
                 <h2>{this.displayedName}</h2>
+                <h3>{this.displayedEmail}</h3>
+                <h4>{this.displayedRole}</h4>
                 <IconButton name="more_vert" id="demo-menu-lower-left" />
                 <Menu target="demo-menu-lower-left">
                   <Link to="/connexion">
