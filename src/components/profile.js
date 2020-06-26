@@ -1,13 +1,95 @@
 import React, { Component } from "react";
 import { IconButton, Menu, MenuItem } from "react-mdl";
 import { Link } from "react-router-dom";
+import jsSHA from "jssha";
 
 class Profile extends Component {
-  static getDisplayedName() {}
+  infos = {}
 
   displayedName = "";
   displayedEmail = "";
   displayedRole = "";
+  displayedDescription = "";
+
+  user = {}
+
+  handleChange(event) {
+    this.infos[event.target.name] = event.target.value;
+  }
+
+  async handleSubmit(event) {
+    switch(event.target.name) {
+      case "password": {
+        if(this.infos["password1"] === undefined || this.infos["password2"] === undefined) {
+          alert("Les deux mots de passe doivent être remplis afin de les modifier");
+          return;
+        }
+        if(this.infos["password1"] !== this.infos["password2"]) {
+          alert("Les deux mots de passe ne sont pas identiques");
+          return;
+        }
+        var passHash = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" });
+        passHash.update(this.infos["password1"]);
+
+        await(fetch("http://localhost:3000/api/users/"+this.user["ID"], {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstname: this.user["Premon"],
+            lastname: this.user["Nom"],
+            email: this.user["Email"],
+            description: this.user["Description"],
+            authkey: passHash.getHash("HEX"),
+            roleid: this.user["ID_Role"]
+          })
+        }));
+        alert("Le mot de passe a bien été modifié");
+      }break;
+      case "email": {
+        await(fetch("http://localhost:3000/api/users/"+this.user["ID"], {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstname: this.user["Premon"],
+            lastname: this.user["Nom"],
+            email: this.infos["email"],
+            description: this.user["Description"],
+            authkey: this.user["authkey"],
+            roleid: this.user["ID_Role"]
+          })
+        }));
+        alert("L'adresse mail a bien été modifié, une reconnexion est nécessaire");
+        document.cookie = "undefined";
+        window.location.assign("..");
+      }break;
+      case "description": {
+        await(fetch("http://localhost:3000/api/users/"+this.user["ID"], {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstname: this.user["Premon"],
+            lastname: this.user["Nom"],
+            email: this.user["Email"],
+            description: this.infos["description"],
+            authkey: this.user["authkey"],
+            roleid: this.user["ID_Role"]
+          })
+        }));
+        alert("La description a bien été modifié");
+        window.location.reload();
+      }break;
+      case "deletion": {
+        
+      }break;
+      default: break;
+    }
+  }
 
   constructor(props) {
     super(props);
@@ -20,8 +102,10 @@ class Profile extends Component {
     fetch("http://localhost:3000/api/users/" + c["user"])
       .then((res) => res.json())
       .then((res) => {
+        this.user = res;
         this.displayedName = res["Nom"] + " " + res["Premon"];
         this.displayedEmail = c["user"];
+        this.displayedDescription = res["Description"];
         fetch("http://localhost:3000/api/roles/" + res["ID_Role"])
           .then((res2) => res2.json())
           .then((res2) => {
@@ -29,6 +113,8 @@ class Profile extends Component {
             this.forceUpdate();
           });
       });
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   render() {
@@ -57,21 +143,7 @@ class Profile extends Component {
                 <h2>{this.displayedName}</h2>
                 <h3>{this.displayedEmail}</h3>
                 <h4>{this.displayedRole}</h4>
-                <IconButton name="more_vert" id="demo-menu-lower-left" />
-                <Menu target="demo-menu-lower-left">
-                  <Link to="/connexion">
-                    <MenuItem>Modifier le mot de passe</MenuItem>
-                  </Link>
-                  <Link to="/">
-                    <MenuItem>Modifier l'adresse mail</MenuItem>
-                  </Link>
-                  <Link to="/aboutus">
-                    <MenuItem>Modifier la description</MenuItem>
-                  </Link>
-                  <Link to="/register">
-                    <MenuItem>Supprimer votre profil</MenuItem>
-                  </Link>
-                </Menu>
+                <h6>{this.displayedDescription}</h6>
               </div>
             </div>
             <div className="col-lg-4"></div>
@@ -85,9 +157,8 @@ class Profile extends Component {
               className="form-control"
               id="password1"
               name="password1"
-              //onChange={Register.handleChange}
+              onChange={this.handleChange}
               placeholder=""
-              //required={true}
             />
             <div className="invalid-feedback">
               Veuillez rentrer un mot de passe correct.
@@ -101,12 +172,11 @@ class Profile extends Component {
               className="form-control"
               id="password2"
               name="password2"
-              //onChange={Register.handleChange}
+              onChange={this.handleChange}
               placeholder="Confirmez votre mot de passe"
-              //required={true}
             />
             <br />
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" name="password" onClick={this.handleSubmit}>
               Modifier
             </button>
           </div>
@@ -122,15 +192,15 @@ class Profile extends Component {
                 type="email"
                 className="form-control"
                 id="username"
-                placeholder="vous@exemple.com"
                 name="email"
-                //onChange={Register.handleChange}
-                //required={true}
+                onChange={this.handleChange}
+                defaultValue={this.user["Email"]}
+                required={true}
               />
               <div className="invalid-feedback">Un Email valide est requis</div>
             </div>
             <br />
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" name="email" onClick={this.handleSubmit}>
               Modifier
             </button>
           </div>
@@ -141,15 +211,21 @@ class Profile extends Component {
             <textarea
               class="form-control"
               aria-label="With textarea"
+              name="description"
+              onChange={this.handleChange}
+              defaultValue={this.user["Description"]}
             ></textarea>
           </div>
           <br />
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" name="description" onClick={this.handleSubmit}>
             Ajouter
           </button>
           <hr className="r"></hr>
           <h3>Supprimer votre profil</h3>
           <hr className="r"></hr>
+          <button type="button" class="btn btn-primary" name="deletion" onClick={this.handleSubmit}>
+            Supprimer
+          </button>
         </div>
       </div>
     );
