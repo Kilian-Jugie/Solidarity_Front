@@ -76,7 +76,80 @@ class Profile extends Component {
             </div>
             <div className="col-lg-4"></div>
           </div>
-          <hr className="featurette-divider"></hr>
+          <hr className="r"></hr>
+          <h3>Modifier le mot de passe</h3>
+          <div className="mb-3">
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password1"
+              name="password1"
+              //onChange={Register.handleChange}
+              placeholder=""
+              //required={true}
+            />
+            <div className="invalid-feedback">
+              Veuillez rentrer un mot de passe correct.
+            </div>
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password2"
+              name="password2"
+              //onChange={Register.handleChange}
+              placeholder="Confirmez votre mot de passe"
+              //required={true}
+            />
+            <br />
+            <button type="button" class="btn btn-primary">
+              Modifier
+            </button>
+          </div>
+          <hr className="r"></hr>
+          <h3>Modifier l'adresse mail</h3>
+          <div className="mb-3">
+            <label htmlFor="username">Email</label>
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <span className="input-group-text">@</span>
+              </div>
+              <input
+                type="email"
+                className="form-control"
+                id="username"
+                placeholder="vous@exemple.com"
+                name="email"
+                //onChange={Register.handleChange}
+                //required={true}
+              />
+              <div className="invalid-feedback">Un Email valide est requis</div>
+            </div>
+            <br />
+            <button type="button" class="btn btn-primary">
+              Modifier
+            </button>
+          </div>
+          <hr className="r"></hr>
+          <h3>Modifier la description</h3>
+          <label htmlFor="username">Rentrez une nouvelle description :</label>
+          <div class="input-group">
+            <textarea
+              class="form-control"
+              aria-label="With textarea"
+            ></textarea>
+          </div>
+          <br />
+          <button type="button" class="btn btn-primary">
+            Ajouter
+          </button>
+          <hr className="r"></hr>
+          <h3>Supprimer votre profil</h3>
+          <hr className="r"></hr>
         </div>
       </div>
     );
