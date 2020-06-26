@@ -10,7 +10,7 @@ class Register extends Component {
 
   static handleSubmit(event) {
     event.preventDefault();
-    if(Register.state["password1"] !== Register.state["password2"]) {
+    if (Register.state["password1"] !== Register.state["password2"]) {
       alert("Les deux mots de passe ne correpondent pas");
       return;
     }
@@ -34,14 +34,15 @@ class Register extends Component {
           headers: {
             "Content-Type": "application/json"
           },
-           body: JSON.stringify({
+          body: JSON.stringify({
             "firstname": Register.state["firstname"],
             "lastname": Register.state["lastname"],
             "email": Register.state["email"],
             "description": "",
             "authkey": passHash.getHash("HEX"),
             "rolename": Register.state["role"]
-           })});
+          })
+        });
       });
   }
 

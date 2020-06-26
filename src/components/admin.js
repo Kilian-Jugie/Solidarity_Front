@@ -10,6 +10,7 @@ class Admin extends Component {
     }
     try {
       var user = JSON.parse(document.cookie)["user"];
+
       fetch("http://localhost:3000/api/users/" + user)
         .then((res) => res.json())
         .then((result) => {
@@ -23,6 +24,7 @@ class Admin extends Component {
               }
             });
         });
+
     } catch (e) {
       //Le cookie a un format incorrect
       alert("Veillez vous reconnecter");
