@@ -55,28 +55,34 @@ class Tchat extends Component {
     fetch("http://localhost:3000/api/users/" + Tchat.state["email"])
       .then((res) => res.json())
       .then((result) => {
+
         var idReceiver = result["ID"]
         fetch("http://localhost:3000/api/users/" + JSON.parse(document.cookie)["user"])
           .then((res) => res.json())
           .then((result) => {
             fetch("http://localhost:3000/api/messages/" + result["ID"], { ///messages/{id l'expediteur}
+
               method: "POST",
               headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
               },
               body: JSON.stringify({
+
                 "toid": idReceiver,   // JSON avec champs : toid(int) [id du destinataire], text(string) [texte du message]
                 "text": Tchat.state["user_message"],
               })
             });
             alert('Le message a été envoyé');
+
           });
       });
   }
 
   render() {
     return (
+
       < div >
+
         <h1 className="center">Messagerie</h1>
         <div className="demo-tabs">
           <Tabs
@@ -116,6 +122,7 @@ class Tchat extends Component {
                     {Tchat.lastMessage}
                   </p>
                 </div>
+
               </div>
             )}
             {this.state.activeTab === 1 && (
@@ -129,7 +136,11 @@ class Tchat extends Component {
             {this.state.activeTab === 2 && (
               <div className="row formulaire">
                 <div className="col-md-12 order-md-1 ">
-                  <form className="needs-validation" noValidate="" onSubmit={Tchat.handleSubmit}>
+                  <form
+                    className="needs-validation"
+                    noValidate=""
+                    onSubmit={Tchat.handleSubmit}
+                  >
                     <div className="mb-3 center">
                       <label htmlFor="destemail">Email du destinataire</label>
                       <div className="input-group">
@@ -168,14 +179,13 @@ class Tchat extends Component {
                     >
                       Envoyer
                     </button>
-
                   </form>
                 </div>
               </div>
             )}
           </section>
         </div>
-      </div >
+      </div>
     );
   }
 }
