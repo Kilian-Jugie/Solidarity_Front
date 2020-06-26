@@ -3,25 +3,25 @@ import { IconButton, Menu, MenuItem } from "react-mdl";
 import { Link } from "react-router-dom";
 
 class Profile extends Component {
-  static getDisplayedName() {
-    
-  }
+  static getDisplayedName() {}
 
   displayedName = "";
 
   constructor(props) {
-    super(props)
-    if(document.cookie === "undefined") {
+    super(props);
+    if (document.cookie === "undefined") {
       alert("Seul les utilisateurs connectés ont accès à cette page");
       window.location.assign("..");
       return;
     }
     var c = JSON.parse(document.cookie);
-    fetch("http://localhost:3000/api/users/"+c["user"]).then((res) => res.json()).then((res) => {
-      this.displayedName = res["Nom"]+" "+res["Premon"];
-      console.log(this.displayedName);
-      this.forceUpdate();
-    });
+    fetch("http://localhost:3000/api/users/" + c["user"])
+      .then((res) => res.json())
+      .then((res) => {
+        this.displayedName = res["Nom"] + " " + res["Premon"];
+        console.log(this.displayedName);
+        this.forceUpdate();
+      });
   }
 
   render() {
@@ -57,7 +57,7 @@ class Profile extends Component {
                     <MenuItem>Modifier l'adresse mail</MenuItem>
                   </Link>
                   <Link to="/aboutus">
-                    <MenuItem>Modifier le numéro de téléphone</MenuItem>
+                    <MenuItem>Modifier la description</MenuItem>
                   </Link>
                   <Link to="/register">
                     <MenuItem>Supprimer votre profil</MenuItem>

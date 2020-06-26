@@ -10,7 +10,7 @@ class Register extends Component {
 
   static handleSubmit(event) {
     event.preventDefault();
-    if(Register.state["password1"] !== Register.state["password2"]) {
+    if (Register.state["password1"] !== Register.state["password2"]) {
       alert("Les deux mots de passe ne correpondent pas");
       return;
     }
@@ -32,16 +32,19 @@ class Register extends Component {
         fetch("http://localhost:3000/api/users", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-           body: JSON.stringify({
-            "firstname": Register.state["firstname"],
-            "lastname": Register.state["lastname"],
-            "email": Register.state["email"],
-            "description": "",
-            "authkey": passHash.getHash("HEX"),
-            "rolename": Register.state["role"]
-           })});
+          body: JSON.stringify({
+            firstname: Register.state["firstname"],
+            lastname: Register.state["lastname"],
+            email: Register.state["email"],
+            description: "",
+            authkey: passHash.getHash("HEX"),
+            rolename: Register.state["role"],
+          }),
+        }).then((res) => {
+          window.location.assign("./success");
+        });
       });
   }
 
@@ -65,7 +68,11 @@ class Register extends Component {
           </div>
           <div className="row">
             <div className="col-md-12 order-md-1">
-              <form className="needs-validation" noValidate="" onSubmit={Register.handleSubmit}>
+              <form
+                className="needs-validation"
+                noValidate=""
+                onSubmit={Register.handleSubmit}
+              >
                 <div className="row">
                   <div className="col-md-6 mb-3">
                     <label htmlFor="firstName">Prénom</label>
@@ -166,7 +173,9 @@ class Register extends Component {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="phone">Numéro de téléphone (facultatif)</label>
+                  <label htmlFor="phone">
+                    Numéro de téléphone (facultatif)
+                  </label>
                   <div className="input-group">
                     <div className="input-group-prepend">
                       <span className="input-group-text">+33</span>
@@ -185,7 +194,9 @@ class Register extends Component {
 
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label htmlFor="role">Fonction en société (facultatif)</label>
+                    <label htmlFor="role">
+                      Fonction en société (facultatif)
+                    </label>
                     <select
                       className="custom-select d-block w-100"
                       id="role"

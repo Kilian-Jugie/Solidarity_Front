@@ -20,6 +20,7 @@ import Addusers from "./addusers";
 import Listusers from "./listusers";
 import Help from "./help";
 import Privacy from "./pvc";
+import Success from "./success";
 
 const Main = () => (
   <Switch>
@@ -42,6 +43,7 @@ const Main = () => (
     <Route path="/listusers" component={Listusers} />
     <Route path="/help" component={Help} />
     <Route path="/pvc" component={Privacy} />
+    <Route path="/success" component={Success} />
   </Switch>
 );
 
