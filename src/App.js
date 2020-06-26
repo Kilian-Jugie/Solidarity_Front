@@ -13,18 +13,39 @@ import {
 import Main from "./components/main";
 import { Link } from "react-router-dom";
 
+function disconnect() {
+  document.cookie = "undefined";
+  window.location.reload();
+}
+
+function getHeader() {
+  if(document.cookie === "undefined") {
+  return (
+    <Navigation>
+      <Link to="/aboutus">A propos de nous</Link>
+      <Link to="/contact">Contact</Link>
+      <Link to="/connexion">Connexion</Link>
+      <Link to="/register">Inscription</Link>
+      <Link to="/">Home</Link>
+    </Navigation>);
+  }
+  else {
+    return (
+      <Navigation>
+        <Link to="/aboutus">A propos de nous</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="" onClick={disconnect}>Deconnexion</Link>
+        <Link to="/">Home</Link>
+      </Navigation>);
+  }
+}
+
 function App() {
   return (
     <div className="demo-big-content">
       <Layout>
         <Header className="header-color" title="Solidarity Bond" scroll>
-          <Navigation>
-            <Link to="/aboutus">A propos de nous</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/connexion">Connexion</Link>
-            <Link to="/register">Inscription</Link>
-            <Link to="/">Home</Link>
-          </Navigation>
+          {getHeader()}
         </Header>
         <Drawer className="sheader-color" title="Solidatrity Bond">
           <Navigation>
@@ -38,10 +59,10 @@ function App() {
           <div className="page-content" />
           <Main />
           <Footer className="footer-color" size="mini">
-            <FooterSection type="left" logo="Title">
+            <FooterSection type="left" logo="Solidarity Bond">
               <FooterLinkList>
-                <a href="/">Help</a>
-                <a href="/">Privacy & Terms</a>
+                <a href="/help">Help</a>
+                <a href="/pvc">Privacy & Terms</a>
               </FooterLinkList>
             </FooterSection>
           </Footer>
