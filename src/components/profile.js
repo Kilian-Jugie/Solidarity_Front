@@ -27,7 +27,6 @@ class Profile extends Component {
         this.forceUpdate();
       });
     });
-
   }
 
   render() {
