@@ -1,56 +1,49 @@
 import React, { Component } from "react";
-import { Tabs, Tab, Content } from "react-mdl";
-var Name = ' ';
-var message = ' ';
-var Donner;
-function derniermessage() {
-  var Email = JSON.parse(document.cookie)["user"];
+import { Tabs, Tab } from "react-mdl";
 
-  fetch("http://localhost:3000/api/users/" + Email)
-    .then((res) => res.json())
-    .then((result) => {
-      Name = result["Nom"];
-      //alert(Name)
-      //alert(result["ID"])
-
-      fetch("http://localhost:3000/api/messages/" + result["ID"])
-        .then((res) => res.json())
-        .then((result) => {
-          //alert("je suis le dernier message : " + result[result.length - 1]["Content"])
-          //alert("je suis lid du dernier message : " + result[result.length - 1]["ID"])
-          message = result[result.length - 1]["Content"]
-        });
-    })
-
-}
-function historiqueMessage() {
-  fetch("http://localhost:3000/api/users/" + JSON.parse(document.cookie)["user"])
-    .then((res) => res.json())
-    .then((result) => {
-      alert(result["ID"])//3
-      fetch("http://localhost:3000/api/messages/" + result["ID"])
-        .then((res) => res.json())
-        .then((result) => {
-          var x = 0;
-          alert(result[0])
-          alert(result[1])
-          alert(result[2])
-          alert(result[3])
-          alert("result x " + result[x])
-          while (result[x] !== undefined) {
-            x = x + 1
-            alert("valeur de x" + x)
-            //compteur de messages envoyer x correspond au nombres de messages envoyer 
-          }
-          alert(Donner)
-        });
-    });
-}
 class Tchat extends Component {
+  static localUserName = ' ';
+  static lastMessage = ' ';
+  static messageHistory = [  ];
+  
+  async getMessagesHistory() {
+  Tchat.messageHistory = [ ];
+    var user = await (await fetch("http://localhost:3000/api/users/" + JSON.parse(document.cookie)["user"])).json();
+    var messages = await (await fetch("http://localhost:3000/api/messages/" + user["ID"]+"?all=true")).json();
+
+    for(var i=0; i<messages.length; i++) {
+      var from = "";
+      var to = "";
+      if(messages[i].ID_Account === user["ID"]) {
+        from = user["Email"];
+        to = (await (await fetch("http://localhost:3000/api/users/"+messages[i].ID_Account_receive)).json())["Email"];
+      }
+      else {
+        to = user["Email"];
+        from = (await (await fetch("http://localhost:3000/api/users/"+messages[i].ID_Account)).json())["Email"];
+      }
+      Tchat.messageHistory.push(<div>Message envoyé par: {from} pour: {to}<br/>{messages[i].Content}<br/><br/></div>);
+    }
+  }
+
+  async setupPage() {
+    await this.getMessagesHistory();
+    this.getLastMessage();
+    this.forceUpdate();
+  }
+
+  getLastMessage() {
+    Tchat.lastMessage = Tchat.messageHistory[Tchat.messageHistory.length-1];
+  }
+
   constructor(props) {
     super(props);
     this.state = { activeTab: 0 };
+    this.getMessagesHistory = this.getMessagesHistory.bind(this);
+    this.getLastMessage = this.getLastMessage.bind(this);
+    this.setupPage();
   }
+
   static state = {};
 
   static handleChange(event) {
@@ -62,34 +55,28 @@ class Tchat extends Component {
     fetch("http://localhost:3000/api/users/" + Tchat.state["email"])
       .then((res) => res.json())
       .then((result) => {
-        var id_destinataire = result["ID"]
-        //alert(id_destinataire);//renvoie 2
-        //alert(Tchat.state["user_message"]);//renvoie premier message
+        var idReceiver = result["ID"]
         fetch("http://localhost:3000/api/users/" + JSON.parse(document.cookie)["user"])
           .then((res) => res.json())
           .then((result) => {
-            alert(result["ID"]) // renvoie 3 
             fetch("http://localhost:3000/api/messages/" + result["ID"], { ///messages/{id l'expediteur}
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
               },
               body: JSON.stringify({
-                "toid": id_destinataire,   // JSON avec champs : toid(int) [id du destinataire], text(string) [texte du message]
+                "toid": idReceiver,   // JSON avec champs : toid(int) [id du destinataire], text(string) [texte du message]
                 "text": Tchat.state["user_message"],
-
               })
-
             });
-            alert('message envoyer');
+            alert('Le message a été envoyé');
           });
       });
   }
+
   render() {
     return (
-
       < div >
-
         <h1 className="center">Messagerie</h1>
         <div className="demo-tabs">
           <Tabs
@@ -125,23 +112,17 @@ class Tchat extends Component {
                     </text>
                   </svg>
                   <p className="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong className="d-block text-gray-dark">{Name}</strong>
-                    {message}
+                    <strong className="d-block text-gray-dark">{Tchat.localUserName}</strong>
+                    {Tchat.lastMessage}
                   </p>
                 </div>
-                <button className="center" onClick={derniermessage}>
-                  refresh
-                    </button>
               </div>
             )}
             {this.state.activeTab === 1 && (
               <div>
                 <h1 className="center" >Mettre les messages </h1>
-                <button onClick={historiqueMessage}>
-                  refresh
-                </button>
                 <ul>
-                  <li>{Donner}</li>
+                  {Tchat.messageHistory}
                 </ul>
               </div>
             )}
@@ -172,7 +153,12 @@ class Tchat extends Component {
                           Message:
                         </label>
                       </div>
-                      <textarea class="zoneTexte" cols="25" rows="8" id="msg" name="user_message" onChange={Tchat.handleChange}></textarea>
+                      <textarea class="zoneTexte"
+                        cols="25" 
+                        rows="8" 
+                        id="msg" 
+                        name="user_message" 
+                        onChange={Tchat.handleChange}> </textarea>
                     </div>
                     <hr className="mb-4"></hr>
                     <button
