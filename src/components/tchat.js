@@ -10,14 +10,14 @@ function derniermessage() {
     .then((res) => res.json())
     .then((result) => {
       Name = result["Nom"];
-      alert(Name)
-      alert(result["ID"])
+      //alert(Name)
+      //alert(result["ID"])
 
       fetch("http://localhost:3000/api/messages/" + result["ID"])
         .then((res) => res.json())
         .then((result) => {
-          alert("je suis le dernier message : " + result[result.length - 1]["Content"])
-          alert("je suis lid du dernier message : " + result[result.length - 1]["ID"])
+          //alert("je suis le dernier message : " + result[result.length - 1]["Content"])
+          //alert("je suis lid du dernier message : " + result[result.length - 1]["ID"])
           message = result[result.length - 1]["Content"]
         });
     })
@@ -27,16 +27,22 @@ function historiqueMessage() {
   fetch("http://localhost:3000/api/users/" + JSON.parse(document.cookie)["user"])
     .then((res) => res.json())
     .then((result) => {
+      alert(result["ID"])//3
       fetch("http://localhost:3000/api/messages/" + result["ID"])
         .then((res) => res.json())
         .then((result) => {
-          alert(result[result.length - 1]["ID_Account"])
-          for (let x = 0; x > (result[result.length - 1]["ID_Account"]); x++) {
-            Donner = [
-              result[x]["Content"]
-
-            ]
-          } alert("voici les donnes :" + Donner)
+          var x = 0;
+          alert(result[0])
+          alert(result[1])
+          alert(result[2])
+          alert(result[3])
+          alert("result x " + result[x])
+          while (result[x] !== undefined) {
+            x = x + 1
+            alert("valeur de x" + x)
+            //compteur de messages envoyer x correspond au nombres de messages envoyer 
+          }
+          alert(Donner)
         });
     });
 }
@@ -123,7 +129,7 @@ class Tchat extends Component {
                     {message}
                   </p>
                 </div>
-                <button onClick={derniermessage}>
+                <button className="center" onClick={derniermessage}>
                   refresh
                     </button>
               </div>
@@ -166,7 +172,7 @@ class Tchat extends Component {
                           Message:
                         </label>
                       </div>
-                      <textarea id="msg" name="user_message" onChange={Tchat.handleChange}></textarea>
+                      <textarea class="zoneTexte" cols="25" rows="8" id="msg" name="user_message" onChange={Tchat.handleChange}></textarea>
                     </div>
                     <hr className="mb-4"></hr>
                     <button
