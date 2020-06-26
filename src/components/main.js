@@ -12,6 +12,7 @@ import Users from "./users";
 import Admin from "./admin";
 import Tchat from "./tchat";
 import Order from "./order";
+
 import Addrole from "./addrole";
 import Delusers from "./delusers";
 import Delrole from "./delrole";
@@ -20,6 +21,7 @@ import Addusers from "./addusers";
 import Listusers from "./listusers";
 import Help from "./help";
 import Privacy from "./pvc";
+
 
 const Main = () => (
   <Switch>
@@ -34,6 +36,7 @@ const Main = () => (
     <Route path="/admin" component={Admin} />
     <Route path="/tchat" component={Tchat} />
     <Route path="/order" component={Order} />
+
     <Route path="/delrole" component={Delrole} />
     <Route path="/delusers" component={Delusers} />
     <Route path="/addrole" component={Addrole} />
@@ -42,6 +45,7 @@ const Main = () => (
     <Route path="/listusers" component={Listusers} />
     <Route path="/help" component={Help} />
     <Route path="/pvc" component={Privacy} />
+
   </Switch>
 );
 
