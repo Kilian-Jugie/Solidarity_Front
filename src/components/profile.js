@@ -1,93 +1,107 @@
 import React, { Component } from "react";
-import { IconButton, Menu, MenuItem } from "react-mdl";
-import { Link } from "react-router-dom";
+
 import jsSHA from "jssha";
 
 class Profile extends Component {
-  infos = {}
+  infos = {};
 
   displayedName = "";
   displayedEmail = "";
   displayedRole = "";
   displayedDescription = "";
 
-  user = {}
+  user = {};
 
   handleChange(event) {
     this.infos[event.target.name] = event.target.value;
   }
 
   async handleSubmit(event) {
-    switch(event.target.name) {
-      case "password": {
-        if(this.infos["password1"] === undefined || this.infos["password2"] === undefined) {
-          alert("Les deux mots de passe doivent être remplis afin de les modifier");
-          return;
-        }
-        if(this.infos["password1"] !== this.infos["password2"]) {
-          alert("Les deux mots de passe ne sont pas identiques");
-          return;
-        }
-        var passHash = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" });
-        passHash.update(this.infos["password1"]);
+    switch (event.target.name) {
+      case "password":
+        {
+          if (
+            this.infos["password1"] === undefined ||
+            this.infos["password2"] === undefined
+          ) {
+            alert(
+              "Les deux mots de passe doivent être remplis afin de les modifier"
+            );
+            return;
+          }
+          if (this.infos["password1"] !== this.infos["password2"]) {
+            alert("Les deux mots de passe ne sont pas identiques");
+            return;
+          }
+          var passHash = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" });
+          passHash.update(this.infos["password1"]);
 
-        await(fetch("http://localhost:3000/api/users/"+this.user["ID"], {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstname: this.user["Premon"],
-            lastname: this.user["Nom"],
-            email: this.user["Email"],
-            description: this.user["Description"],
-            authkey: passHash.getHash("HEX"),
-            roleid: this.user["ID_Role"]
-          })
-        }));
-        alert("Le mot de passe a bien été modifié");
-      }break;
-      case "email": {
-        await(fetch("http://localhost:3000/api/users/"+this.user["ID"], {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstname: this.user["Premon"],
-            lastname: this.user["Nom"],
-            email: this.infos["email"],
-            description: this.user["Description"],
-            authkey: this.user["authkey"],
-            roleid: this.user["ID_Role"]
-          })
-        }));
-        alert("L'adresse mail a bien été modifié, une reconnexion est nécessaire");
-        document.cookie = "undefined";
-        window.location.assign("..");
-      }break;
-      case "description": {
-        await(fetch("http://localhost:3000/api/users/"+this.user["ID"], {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstname: this.user["Premon"],
-            lastname: this.user["Nom"],
-            email: this.user["Email"],
-            description: this.infos["description"],
-            authkey: this.user["authkey"],
-            roleid: this.user["ID_Role"]
-          })
-        }));
-        alert("La description a bien été modifié");
-        window.location.reload();
-      }break;
-      case "deletion": {
-        
-      }break;
-      default: break;
+          await fetch("http://localhost:3000/api/users/" + this.user["ID"], {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              firstname: this.user["Premon"],
+              lastname: this.user["Nom"],
+              email: this.user["Email"],
+              description: this.user["Description"],
+              authkey: passHash.getHash("HEX"),
+              roleid: this.user["ID_Role"],
+            }),
+          });
+          alert("Le mot de passe a bien été modifié");
+        }
+        break;
+      case "email":
+        {
+          await fetch("http://localhost:3000/api/users/" + this.user["ID"], {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              firstname: this.user["Premon"],
+              lastname: this.user["Nom"],
+              email: this.infos["email"],
+              description: this.user["Description"],
+              authkey: this.user["authkey"],
+              roleid: this.user["ID_Role"],
+            }),
+          });
+          alert(
+            "L'adresse mail a bien été modifié, une reconnexion est nécessaire"
+          );
+          document.cookie = "undefined";
+          window.location.assign("..");
+        }
+        break;
+      case "description":
+        {
+          await fetch("http://localhost:3000/api/users/" + this.user["ID"], {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              firstname: this.user["Premon"],
+              lastname: this.user["Nom"],
+              email: this.user["Email"],
+              description: this.infos["description"],
+              authkey: this.user["authkey"],
+              roleid: this.user["ID_Role"],
+            }),
+          });
+          alert("La description a bien été modifié");
+          window.location.reload();
+        }
+        break;
+      case "deletion":
+        {
+        }
+        break;
+      default:
+        break;
     }
   }
 
@@ -113,8 +127,8 @@ class Profile extends Component {
             this.forceUpdate();
           });
       });
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   render() {
@@ -176,7 +190,12 @@ class Profile extends Component {
               placeholder="Confirmez votre mot de passe"
             />
             <br />
-            <button type="button" class="btn btn-primary" name="password" onClick={this.handleSubmit}>
+            <button
+              type="button"
+              class="btn btn-primary"
+              name="password"
+              onClick={this.handleSubmit}
+            >
               Modifier
             </button>
           </div>
@@ -200,7 +219,12 @@ class Profile extends Component {
               <div className="invalid-feedback">Un Email valide est requis</div>
             </div>
             <br />
-            <button type="button" class="btn btn-primary" name="email" onClick={this.handleSubmit}>
+            <button
+              type="button"
+              class="btn btn-primary"
+              name="email"
+              onClick={this.handleSubmit}
+            >
               Modifier
             </button>
           </div>
@@ -217,13 +241,23 @@ class Profile extends Component {
             ></textarea>
           </div>
           <br />
-          <button type="button" class="btn btn-primary" name="description" onClick={this.handleSubmit}>
+          <button
+            type="button"
+            class="btn btn-primary"
+            name="description"
+            onClick={this.handleSubmit}
+          >
             Ajouter
           </button>
           <hr className="r"></hr>
           <h3>Supprimer votre profil</h3>
           <hr className="r"></hr>
-          <button type="button" class="btn btn-primary" name="deletion" onClick={this.handleSubmit}>
+          <button
+            type="button"
+            class="btn btn-primary"
+            name="deletion"
+            onClick={this.handleSubmit}
+          >
             Supprimer
           </button>
         </div>
