@@ -2,20 +2,62 @@ import React, { Component } from "react";
 
 import jsSHA from "jssha";
 
+/**
+ * @component
+ * @description Page de profile privée d'un utilisateur sur laquelle il peut changer ses données
+ */
 class Profile extends Component {
+  /**
+   * @description Les informations pouvant être remplies sous la forme [nom] = valeur
+   */
   infos = {};
 
+  /**
+   * @type {string}
+   * @description Le nom affiché à l'écran
+   */
   displayedName = "";
+
+  /**
+   * @type {string}
+   * @description L'email affiché à l'écran
+   */
   displayedEmail = "";
+
+  /**
+   * @type {string}
+   * @description Le role affiché à l'écran
+   */
   displayedRole = "";
+
+  /**
+   * @type {string}
+   * @description La description affiché à l'écran
+   */
   displayedDescription = "";
 
+  /**
+   * @description Réponse de l'API contenant les différentes caractéristiques de l'utilisateur
+   */
   user = {};
 
+  /**
+   * @function
+   * @description Prend en charge les changements des différents inputs de la page
+   * @param {Event} event passé automatiquement et permet d'accéder aux valeurs des inputs
+   * @callback
+   */
   handleChange(event) {
     this.infos[event.target.name] = event.target.value;
   }
 
+  /**
+   * @function
+   * @description Fonction appelée lors de la confirmation et l'envoie du formulaire rempli (ici le nouveau message)
+   * @param {MouseEvent} event qui permet d'obtenir des informations sur l'envoie du formulaire
+   * @async
+   * @callback
+   */
   async handleSubmit(event) {
     switch (event.target.name) {
       case "password":

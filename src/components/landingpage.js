@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+/**
+ * @component
+ * @description Page d'accueil principale sur laquelle l'utilisateur tombe en entrant l'adresse du site
+ */
 class Landing extends Component {
   render() {
     return (

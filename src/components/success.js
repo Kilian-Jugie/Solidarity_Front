@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+/**
+ * @component
+ * @description Page servant à annoncer à l'utilisateur le succès de son enregistrement et à lui rappeler de se connecter
+ */
 class Success extends Component {
   render() {
     return (

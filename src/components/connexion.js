@@ -1,13 +1,32 @@
 import * as React from "react";
 import jsSHA from "jssha";
 
+/**
+ * @component
+ * @description Page permettant à se connecter en tant qu'un utilisateur enregistré
+ */
 class Connexion extends React.Component {
+  /**
+   * @description Les informations pouvant être remplies sous la forme [nom] = valeur
+   */
   static state = {};
 
+  /**
+   * @function
+   * @description Prend en charge les changements des différents inputs de la page
+   * @param {Event} event passé automatiquement et permet d'accéder aux valeurs des inputs
+   * @callback
+   */
   static handleChange(event) {
     Connexion.state[event.target.name] = event.target.value;
   }
 
+  /**
+   * @function
+   * @description Fonction appelée lors de la confirmation et l'envoie du formulaire rempli (ici le nouveau message)
+   * @param {MouseEvent} event qui permet d'obtenir des informations sur l'envoie du formulaire
+   * @callback
+   */
   static handleSubmit(event) {
     event.preventDefault();
     if (Connexion.state["email"].indexOf("@") === -1) return;
@@ -46,6 +65,10 @@ class Connexion extends React.Component {
       });
   }
 
+  /**
+   * @function
+   * @description Permet de rediriger vers la page d'enregistrement
+   */
   static redirectToRegister() {
     window.location.assign("./register");
   }

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Grid, Cell, List, ListItem, ListItemContent } from "react-mdl";
 
+/**
+ * @component
+ * @description Donne les informations nécessaires afin de contacter les administrateurs ou l'autorité chargé de la gestion du site
+ */
 class Contact extends Component {
   render() {
     return (
