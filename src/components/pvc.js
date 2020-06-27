@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+/**
+ * @component
+ * @description Page contenant les mentions obligatoires pour un site
+ */
 class Privacy extends Component {
   render() {
     return (

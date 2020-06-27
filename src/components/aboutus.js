@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Grid, Cell } from "react-mdl";
 
+/**
+ * @component
+ * @description Donne des informations diverses sur les développeurs du site
+ */
 class Aboutus extends Component {
   render() {
     return (
