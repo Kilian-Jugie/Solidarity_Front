@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 
+/**
+ * Page utilisateur
+ * @component
+ * @exemple
+ * cc
+ */
 class Users extends Component {
   render() {
     return (
