@@ -1,12 +1,33 @@
 import React, { Component } from "react";
 
 /**
- * Page utilisateur
+ * Page listant tous les utilisateurs afin de chercher quelqu'un à contacter
  * @component
- * @exemple
- * cc
  */
 class Users extends Component {
+  userList = [  ];
+  searchedRole = "";
+
+  async getUserList() {
+    this.userList = [];
+    var users = await (await fetch("http://localhost:3000/api/users?role="+this.searchedRole)).json();
+    for(var i=0; i<users.length; i++) {
+      this.userList.push(<div>Mme ou Mr {users[i]["Premon"]} {users[i]["Nom"]}<br/>Adresse mail: {users[i]["Email"]}<br/><br/></div>);
+    }
+  }
+
+  async handleChange(event) {
+    this.searchedRole = event.target.value;
+    await this.getUserList();
+    this.forceUpdate();
+  }
+
+  constructor(props) {
+    super(props);
+    this.getUserList = this.getUserList.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   render() {
     return (
       <div className="body">
@@ -47,7 +68,8 @@ class Users extends Component {
               class="custom-select d-block w-100"
               id="state"
               name="role"
-              required=""
+              onChange={this.handleChange}
+              required={true}
             >
               <option value="">Choisir...</option>
               <option>Administrateur</option>
@@ -56,6 +78,7 @@ class Users extends Component {
               <option>Fabricant</option>
             </select>
             <hr class="featurette-divider"></hr>
+            {this.userList}
           </div>
         </div>
       </div>
