@@ -1,23 +1,42 @@
 import React, { Component } from "react";
 import jsSHA from "jssha";
 
+/**
+ * @component
+ * @description Page permettant de s'enregistrer dans la base de données
+ */
 class Register extends Component {
+  /**
+   * @description Les informations pouvant être remplies sous la forme [nom] = valeur
+   */
   static state = {};
 
+  /**
+   * @function
+   * @description Prend en charge les changements des différents inputs de la page
+   * @param {Event} event passé automatiquement et permet d'accéder aux valeurs des inputs
+   * @callback
+   */
   static handleChange(event) {
     Register.state[event.target.name] = event.target.value;
   }
 
+  /**
+   * @function
+   * @description Fonction appelée lors de la confirmation et l'envoie du formulaire rempli (ici la création du compte)
+   * @param {MouseEvent} event qui permet d'obtenir des informations sur l'envoie du formulaire
+   * @callback
+   */
   static handleSubmit(event) {
     event.preventDefault();
     if (Register.state["password1"] !== Register.state["password2"]) {
       alert("Les deux mots de passe ne correpondent pas");
       return;
     }
-    /*if(Register.state["role"] === "Administrateur") {
+    if(Register.state["role"] === "Administrateur") {
       alert("Le rôle administrateur n'est pas assignable automatiquement. Contactez les administrateurs");
       return;
-    }*/
+    }
 
     fetch("http://localhost:3000/api/users/" + Register.state["email"])
       .then((res) => res.json())

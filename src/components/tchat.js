@@ -1,11 +1,38 @@
 import React, { Component } from "react";
 import { Tabs, Tab } from "react-mdl";
 
+/**
+ * @component
+ * @description Tchat pour parler entre les différentes personnes
+ */
 class Tchat extends Component {
+  /**
+   * @type {string}
+   * @description Le nom d'utilisateur actuellement connecté
+   */
   static localUserName = ' ';
+
+  /**
+   * @type {string}
+   * @description Le dernier message
+   */
   static lastMessage = ' ';
+
+  /**
+   * @description L'historique des messages sous forme de tableau JSX
+   */
   static messageHistory = [  ];
-  
+
+  /**
+   * @description Les informations pouvant être remplies sous la forme [nom] = valeur
+   */
+  static state = {};
+
+  /**
+   * @function
+   * @description Génère l'historique des messages en JSX
+   * @async
+   */
   async getMessagesHistory() {
   Tchat.messageHistory = [ ];
     var user = await (await fetch("http://localhost:3000/api/users/" + JSON.parse(document.cookie)["user"])).json();
@@ -26,12 +53,22 @@ class Tchat extends Component {
     }
   }
 
+  /**
+   * @function
+   * @description Call toutes les fonction chargées de préparer la page à l'affichage
+   * @async
+   */
   async setupPage() {
     await this.getMessagesHistory();
     this.getLastMessage();
     this.forceUpdate();
   }
 
+  /**
+   * @function
+   * @description Charge le dernier message dans la variable destinée à cet usage
+   * @async
+   */
   getLastMessage() {
     Tchat.lastMessage = Tchat.messageHistory[Tchat.messageHistory.length-1];
   }
@@ -44,12 +81,23 @@ class Tchat extends Component {
     this.setupPage();
   }
 
-  static state = {};
-
+  
+  /**
+   * @function
+   * @description Prend en charge les changements des différents inputs de la page
+   * @param {Event} event passé automatiquement et permet d'accéder aux valeurs des inputs
+   * @callback
+   */
   static handleChange(event) {
     Tchat.state[event.target.name] = event.target.value;
   }
 
+  /**
+   * @function
+   * @description Fonction appelée lors de la confirmation et l'envoie du formulaire rempli (ici le nouveau message)
+   * @param {MouseEvent} event qui permet d'obtenir des informations sur l'envoie du formulaire
+   * @callback
+   */
   static handleSubmit(event) {
     event.preventDefault();
     fetch("http://localhost:3000/api/users/" + Tchat.state["email"])

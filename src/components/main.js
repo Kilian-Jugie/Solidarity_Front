@@ -23,6 +23,9 @@ import Help from "./help";
 import Privacy from "./pvc";
 import Success from "./success";
 
+/**
+ * @description Routeur pricipale permettant la redirection de routes vers des composants react
+ */
 const Main = () => (
   <Switch>
     <Route exact path="/" component={LandingPage} />

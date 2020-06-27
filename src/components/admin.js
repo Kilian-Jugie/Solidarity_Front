@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * @component
+ * @description Page d'aministration permettant auxs administrateurs d'effectuer directement certaines opérations sans vérification
+ */
 class Admin extends Component {
   render() {
     if (document.cookie === "undefined") {

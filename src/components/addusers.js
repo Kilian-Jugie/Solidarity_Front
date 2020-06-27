@@ -1,13 +1,32 @@
 import React, { Component } from "react";
 import jsSHA from "jssha";
 
+/**
+ * @component
+ * @description page accessible depuis le panneau adminstrateur servant à ajouter un utilisateur
+ */
 class Addusers extends Component {
+  /**
+   * @description Les informations pouvant être remplies sous la forme [nom] = valeur
+   */
   static infos = {};
 
+  /**
+   * @function
+   * @description Prend en charge les changements des différents inputs de la page
+   * @param {Event} event passé automatiquement et permet d'accéder aux valeurs des inputs
+   * @callback
+   */
   static handleChange(event) {
     Addusers.infos[event.target.name] = event.target.value;
   }
 
+  /**
+   * @function
+   * @description Fonction appelée lors de la confirmation et l'envoie du formulaire rempli (ici le nouveau message)
+   * @param {MouseEvent} event qui permet d'obtenir des informations sur l'envoie du formulaire
+   * @callback
+   */
   static handleSubmit(event) {
     var passHash = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" });
     passHash.update(Addusers.infos["password"]);

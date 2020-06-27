@@ -1,13 +1,25 @@
 import React, { Component } from "react";
 
 /**
- * Page listant tous les utilisateurs afin de chercher quelqu'un à contacter
+ * @description Page listant tous les utilisateurs afin de chercher quelqu'un à contacter
  * @component
  */
 class Users extends Component {
+  /**
+   * @description Liste les utilisateurs sous forme d'un tableau JSX
+   */
   userList = [  ];
+  /**
+   * @type {string}
+   * @description Le rôle recherché sous form de string
+   */
   searchedRole = "";
 
+  /**
+   * @function
+   * @description Permet de remplir le champ userList qui est affiché en tant que JSX
+   * @async
+   */
   async getUserList() {
     this.userList = [];
     var users = await (await fetch("http://localhost:3000/api/users?role="+this.searchedRole)).json();
@@ -16,6 +28,13 @@ class Users extends Component {
     }
   }
 
+  /**
+   * @function
+   * @description Prend en charge le changement de rôle dans le menu déroulant et le sauvegarde
+   * @param {Event} event passé automatiquement et permet d'accéder aux valeurs des inputs
+   * @async
+   * @callback
+   */
   async handleChange(event) {
     this.searchedRole = event.target.value;
     await this.getUserList();

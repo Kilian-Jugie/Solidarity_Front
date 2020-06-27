@@ -13,11 +13,19 @@ import {
 import Main from "./components/main";
 import { Link } from "react-router-dom";
 
+/**
+ * @function
+ * @description Défini une norme pour se "déconnecter"
+ */
 function disconnect() {
   document.cookie = "undefined";
   window.location.reload();
 }
 
+/**
+ * @function
+ * @description Génère le header en fonction de l'état de connexion de l'utilisateur
+ */
 function getHeader() {
   if (document.cookie === "undefined") {
     return (
@@ -43,6 +51,9 @@ function getHeader() {
   }
 }
 
+/**
+ * @description Fonction principale appelée en premier pour générer le code frontend du site web
+ */
 function App() {
   return (
     <div className="demo-big-content">

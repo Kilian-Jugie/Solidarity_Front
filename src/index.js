@@ -7,6 +7,9 @@ import "react-mdl/extra/material.css";
 import "react-mdl/extra/material.js";
 import { BrowserRouter } from "react-router-dom";
 
+/**
+ * Fonction chargé d'appeler l'App.js
+ */
 ReactDOM.render(
   <BrowserRouter>
     <App />
