@@ -126,7 +126,7 @@ class Tchat extends Component {
               })
             });
             alert('Le message a été envoyé');
-
+            window.location.reload();
           });
       });
   }

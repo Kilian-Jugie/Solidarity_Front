@@ -78,7 +78,7 @@ class Admin extends Component {
                       type="button"
                       className="btn btn-lg btn-block btn-outline-primary"
                     >
-                      Listez
+                      Lister
                     </button>
                   </Link>
                 </div>
@@ -106,14 +106,14 @@ class Admin extends Component {
                       type="button"
                       className="btn btn-lg btn-block btn-outline-primary"
                     >
-                      Ajoutez
+                      Ajouter
                     </button>
                   </Link>
                 </div>
               </div>
               <div className="card mb-4 shadow-sm">
                 <div className="card-header">
-                  <h4 className="my-0 font-weight-normal">Liste les rôles</h4>
+                  <h4 className="my-0 font-weight-normal">Lister les rôles</h4>
                 </div>
                 <div className="card-body">
                   <h5 className="card-title pricing-card-title">
@@ -132,7 +132,7 @@ class Admin extends Component {
                       type="button"
                       className="btn btn-lg btn-block btn-outline-primary"
                     >
-                      Afiichez
+                      Afiicher
                     </button>
                   </Link>
                 </div>
@@ -161,7 +161,7 @@ class Admin extends Component {
                       type="button"
                       className="btn btn-lg btn-block btn-outline-primary"
                     >
-                      Ajoutez
+                      Ajouter
                     </button>
                   </Link>
                 </div>
@@ -175,7 +175,8 @@ class Admin extends Component {
                 <div className="card-body">
                   <h5 className="card-title pricing-card-title">
                     Permet de supprimer n'importe quel utilisateur du site en
-                    renseignant certains paramètres
+                    renseignant certains paramètres. Attention, cela supprimera
+                    tous les messages issus de l'utilisateur ou reçus par l'utilisateur
                   </h5>
                   <br />
                   <br />
@@ -189,7 +190,7 @@ class Admin extends Component {
                       type="button"
                       className="btn btn-lg btn-block btn-outline-primary"
                     >
-                      Supprimez
+                      Supprimer
                     </button>
                   </Link>
                 </div>
@@ -201,7 +202,9 @@ class Admin extends Component {
                 <div className="card-body">
                   <h5 className="card-title pricing-card-title">
                     Permet de supprimer n'importe quel rôle en renseignant le
-                    rôle a vouloir supprimer
+                    rôle a vouloir supprimer. Attention, le role ne doit pas
+                    être référencé dans la base de donnée sinon la suppression 
+                    ne fonctionnera pas (sécurité volontaire).
                   </h5>
                   <br />
                   <br />
@@ -215,7 +218,7 @@ class Admin extends Component {
                       type="button"
                       className="btn btn-lg btn-block btn-outline-primary"
                     >
-                      Supprimez
+                      Supprimer
                     </button>
                   </Link>
                 </div>
