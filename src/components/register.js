@@ -1,24 +1,43 @@
 import React, { Component } from "react";
 import jsSHA from "jssha";
 
+/**
+ * @component
+ * @description Page permettant de s'enregistrer dans la base de données
+ */
 class Register extends Component {
+  /**
+   * @description Les informations pouvant être remplies sous la forme [nom] = valeur
+   */
   static state = {};
 
+  /**
+   * @function
+   * @description Prend en charge les changements des différents inputs de la page
+   * @param {Event} event passé automatiquement et permet d'accéder aux valeurs des inputs
+   * @callback
+   */
   static handleChange(event) {
     Register.state[event.target.name] = event.target.value;
   }
 
+  /**
+   * @function
+   * @description Fonction appelée lors de la confirmation et l'envoie du formulaire rempli (ici la création du compte)
+   * @param {MouseEvent} event qui permet d'obtenir des informations sur l'envoie du formulaire
+   * @callback
+   */
   static handleSubmit(event) {
     event.preventDefault();
     if (Register.state["password1"] !== Register.state["password2"]) {
       alert("Les deux mots de passe ne correpondent pas");
       return;
     }
-    /*if(Register.state["role"] === "Administrateur") {
+    if (Register.state["role"] === "Administrateur") {
       alert("Le rôle administrateur n'est pas assignable automatiquement. Contactez les administrateurs");
       return;
-    }*/
-    console.log(Register.state["email"])
+    }
+
     fetch("http://localhost:3000/api/users/" + Register.state["email"])
       .then((res) => res.json())
       .then((result) => {
@@ -32,16 +51,18 @@ class Register extends Component {
         fetch("http://localhost:3000/api/users", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            "firstname": Register.state["firstname"],
-            "lastname": Register.state["lastname"],
-            "email": Register.state["email"],
-            "description": "test",
-            "authkey": passHash.getHash("HEX"),
-            "rolename": Register.state["role"]
-          })
+            firstname: Register.state["firstname"],
+            lastname: Register.state["lastname"],
+            email: Register.state["email"],
+            description: "",
+            authkey: passHash.getHash("HEX"),
+            rolename: Register.state["role"],
+          }),
+        }).then((res) => {
+          window.location.assign("./success");
         });
       });
   }
@@ -66,7 +87,11 @@ class Register extends Component {
           </div>
           <div className="row">
             <div className="col-md-12 order-md-1">
-              <form className="needs-validation" noValidate="" onSubmit={Register.handleSubmit}>
+              <form
+                className="needs-validation"
+                noValidate=""
+                onSubmit={Register.handleSubmit}
+              >
                 <div className="row">
                   <div className="col-md-6 mb-3">
                     <label htmlFor="firstName">Prénom</label>
@@ -167,7 +192,9 @@ class Register extends Component {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="phone">Numéro de téléphone (facultatif)</label>
+                  <label htmlFor="phone">
+                    Numéro de téléphone (facultatif)
+                  </label>
                   <div className="input-group">
                     <div className="input-group-prepend">
                       <span className="input-group-text">+33</span>
@@ -186,7 +213,9 @@ class Register extends Component {
 
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label htmlFor="role">Fonction en société (facultatif)</label>
+                    <label htmlFor="role">
+                      Fonction en société (facultatif)
+                    </label>
                     <select
                       className="custom-select d-block w-100"
                       id="role"

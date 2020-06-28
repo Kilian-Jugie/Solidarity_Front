@@ -366,9 +366,8 @@ h1.coover {
   margin-left: 20%;
 }
 
-.zoneTexte
-{
-width:70%;
+.zoneTexte {
+  width: 70%;
 }
 
 /*pvc.js */
@@ -383,4 +382,10 @@ width:70%;
 
 .titre2 {
   font-size: 20px;
+}
+
+/* profile.js */
+
+.r {
+  margin-top: 7%;
 }

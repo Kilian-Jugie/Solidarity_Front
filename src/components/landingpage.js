@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import P_A from "../images/P_A.jpg";
 import Fab from '../images/Fab.jpg';
 import V from '../images/Visère.jpg'
+
+
+/**
+ * @component
+ * @description Page d'accueil principale sur laquelle l'utilisateur tombe en entrant l'adresse du site
+ */
+
 class Landing extends Component {
   render() {
     return (

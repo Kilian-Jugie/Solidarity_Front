@@ -21,8 +21,11 @@ import Addusers from "./addusers";
 import Listusers from "./listusers";
 import Help from "./help";
 import Privacy from "./pvc";
+import Success from "./success";
 
-
+/**
+ * @description Routeur pricipale permettant la redirection de routes vers des composants react
+ */
 const Main = () => (
   <Switch>
     <Route exact path="/" component={LandingPage} />
@@ -45,7 +48,7 @@ const Main = () => (
     <Route path="/listusers" component={Listusers} />
     <Route path="/help" component={Help} />
     <Route path="/pvc" component={Privacy} />
-
+    <Route path="/success" component={Success} />
   </Switch>
 );
 

@@ -13,33 +13,47 @@ import {
 import Main from "./components/main";
 import { Link } from "react-router-dom";
 
+/**
+ * @function
+ * @description Défini une norme pour se "déconnecter"
+ */
 function disconnect() {
   document.cookie = "undefined";
   window.location.reload();
 }
 
+/**
+ * @function
+ * @description Génère le header en fonction de l'état de connexion de l'utilisateur
+ */
 function getHeader() {
-  if(document.cookie === "undefined") {
-  return (
-    <Navigation>
-      <Link to="/aboutus">A propos de nous</Link>
-      <Link to="/contact">Contact</Link>
-      <Link to="/connexion">Connexion</Link>
-      <Link to="/register">Inscription</Link>
-      <Link to="/">Home</Link>
-    </Navigation>);
-  }
-  else {
+  if (document.cookie === "undefined") {
     return (
       <Navigation>
         <Link to="/aboutus">A propos de nous</Link>
         <Link to="/contact">Contact</Link>
-        <Link to="" onClick={disconnect}>Deconnexion</Link>
+        <Link to="/connexion">Connexion</Link>
+        <Link to="/register">Inscription</Link>
         <Link to="/">Home</Link>
-      </Navigation>);
+      </Navigation>
+    );
+  } else {
+    return (
+      <Navigation>
+        <Link to="/aboutus">A propos de nous</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="" onClick={disconnect}>
+          Deconnexion
+        </Link>
+        <Link to="/">Home</Link>
+      </Navigation>
+    );
   }
 }
 
+/**
+ * @description Fonction principale appelée en premier pour générer le code frontend du site web
+ */
 function App() {
   return (
     <div className="demo-big-content">
@@ -52,7 +66,7 @@ function App() {
             <Link to="/profile">Profile</Link>
             <a href="https://www.makery.info/labs-map/">Map</a>
             <Link to="/tchat">Messagerie</Link>
-            <Link to="/">Link</Link>
+            <Link to="/users">Public</Link>
           </Navigation>
         </Drawer>
         <Content>
