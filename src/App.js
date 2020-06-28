@@ -40,6 +40,9 @@ function getHeader() {
   } else {
     return (
       <Navigation>
+        <Link to="">
+          Connecté en tant que {JSON.parse(document.cookie)["user"]}
+        </Link>
         <Link to="/aboutus">A propos de nous</Link>
         <Link to="/contact">Contact</Link>
         <Link to="" onClick={disconnect}>

@@ -18,11 +18,9 @@ class Contact extends Component {
               style={{ height: "250px" }}
             />
             <p style={{ width: "75%", margin: "auto", paddingTop: "1em" }}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries
+              Vous voici sur la page de contact , vous pouvez nous joindre en nous appelant ou en vous rendant directement à l'adresse indiquer.
+              Cepandant il serait préférable d'appeller pour prévenir de votre présence avant de vous rendre à l'adresse.<br />
+              Nous sommes heureux de pourvoir vous aider dans la réalisation de vos prototypes , si vous souhaitez devenir un de nos client ou partenaire necciter pas à vous incrire sur notre site.
             </p>
           </Cell>
           <Cell col={6}>
