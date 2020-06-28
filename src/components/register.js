@@ -18,7 +18,7 @@ class Register extends Component {
       alert("Le rôle administrateur n'est pas assignable automatiquement. Contactez les administrateurs");
       return;
     }*/
-
+    console.log(Register.state["email"])
     fetch("http://localhost:3000/api/users/" + Register.state["email"])
       .then((res) => res.json())
       .then((result) => {
@@ -38,7 +38,7 @@ class Register extends Component {
             "firstname": Register.state["firstname"],
             "lastname": Register.state["lastname"],
             "email": Register.state["email"],
-            "description": "",
+            "description": "test",
             "authkey": passHash.getHash("HEX"),
             "rolename": Register.state["role"]
           })

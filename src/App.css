@@ -140,7 +140,26 @@ h1.coover {
 .center {
   text-align: center;
 }
+.ttext{
+  font-family:"times new roman", times, serif;
+  color: #1f1e1e;
+}
+.t{
+  font-weight: 100;
+  font-size: x-large;
+}
+.im2{
+  display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+.im1{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50%;
 
+}
 /* Connexion.js */
 
 .connexion {
