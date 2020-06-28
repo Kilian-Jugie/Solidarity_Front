@@ -75,6 +75,11 @@ class Tchat extends Component {
 
   constructor(props) {
     super(props);
+    if (document.cookie === "undefined") {
+      alert("Seul les utilisateurs connectés ont accès à cette page");
+      window.location.assign("..");
+      return;
+    }
     this.state = { activeTab: 0 };
     this.getMessagesHistory = this.getMessagesHistory.bind(this);
     this.getLastMessage = this.getLastMessage.bind(this);
