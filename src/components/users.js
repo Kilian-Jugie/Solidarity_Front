@@ -8,7 +8,7 @@ class Users extends Component {
   /**
    * @description Liste les utilisateurs sous forme d'un tableau JSX
    */
-  userList = [  ];
+  userList = [];
   /**
    * @type {string}
    * @description Le rôle recherché sous form de string
@@ -22,9 +22,19 @@ class Users extends Component {
    */
   async getUserList() {
     this.userList = [];
-    var users = await (await fetch("http://localhost:3000/api/users?role="+this.searchedRole)).json();
-    for(var i=0; i<users.length; i++) {
-      this.userList.push(<div>Mme ou Mr {users[i]["Premon"]} {users[i]["Nom"]}<br/>Adresse mail: {users[i]["Email"]}<br/><br/></div>);
+    var users = await (
+      await fetch("http://localhost:3000/api/users?role=" + this.searchedRole)
+    ).json();
+    for (var i = 0; i < users.length; i++) {
+      this.userList.push(
+        <div>
+          Mme ou Mr {users[i]["Premon"]} {users[i]["Nom"]}
+          <br />
+          Adresse mail: {users[i]["Email"]}
+          <br />
+          <br />
+        </div>
+      );
     }
   }
 
@@ -54,6 +64,7 @@ class Users extends Component {
           <div class="container marketing">
             <hr class="featurette-divider"></hr>
             <h2>Annuaire</h2>
+
             Choisir un rôle :
             <select
               class="custom-select d-block w-100"
