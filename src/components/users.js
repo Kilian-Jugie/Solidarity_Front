@@ -8,7 +8,7 @@ class Users extends Component {
   /**
    * @description Liste les utilisateurs sous forme d'un tableau JSX
    */
-  userList = [  ];
+  userList = [];
   /**
    * @type {string}
    * @description Le rôle recherché sous form de string
@@ -22,9 +22,19 @@ class Users extends Component {
    */
   async getUserList() {
     this.userList = [];
-    var users = await (await fetch("http://localhost:3000/api/users?role="+this.searchedRole)).json();
-    for(var i=0; i<users.length; i++) {
-      this.userList.push(<div>Mme ou Mr {users[i]["Premon"]} {users[i]["Nom"]}<br/>Adresse mail: {users[i]["Email"]}<br/><br/></div>);
+    var users = await (
+      await fetch("http://localhost:3000/api/users?role=" + this.searchedRole)
+    ).json();
+    for (var i = 0; i < users.length; i++) {
+      this.userList.push(
+        <div>
+          Mme ou Mr {users[i]["Premon"]} {users[i]["Nom"]}
+          <br />
+          Adresse mail: {users[i]["Email"]}
+          <br />
+          <br />
+        </div>
+      );
     }
   }
 
@@ -69,19 +79,27 @@ class Users extends Component {
               </svg>
               <div class="container">
                 <div class="carousel-caption text-center">
-                  <h1>Example headline.</h1>
-                  <p>
-                    Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                    Donec id elit non mi porta gravida at eget metus. Nullam id
-                    dolor id nibh ultricies vehicula ut id elit.
-                  </p>
+                  <img
+                    className="im1"
+                    src="https://www.projet-coop.fr/wp-content/uploads/2019/08/logo-pour-le-site-1-2.png"
+                    alt="fablab1"
+                  />
                 </div>
               </div>
             </div>
           </div>
           <div class="container marketing">
             <hr class="featurette-divider"></hr>
-            <h2>Profil page</h2>
+            <div className="text-center">
+              <h2>Page de profil</h2>
+              <p>
+                Sur cette page nous pouvons voir les informations publique des
+                utilisateurs qui sont enregistré a notre afin de pouvoir élargir
+                notre réseau que ce soit pour nos clients comme nos partenaires.
+                elit.
+              </p>
+            </div>
+            <br />
             Choisir un rôle :
             <select
               class="custom-select d-block w-100"

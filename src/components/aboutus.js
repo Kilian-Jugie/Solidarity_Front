@@ -49,9 +49,9 @@ class Aboutus extends Component {
             </svg>
             <h2>Ducourneau Andréas </h2>
             <p>
-              Dévellopeur Back-end <br />
-              Réalisation : Structure du site , Front et back-end<br />
-            A commencer son cursus à l'école d'ingénieur du CESI bordeaux,il est le réalisateur de la structure du site et de ces fonctionnaliter ansi que de son designe.
+              Développeur Frontend <br />
+              Réalisation : Structure du site, Frontend<br />
+              Etudie actuellement au CESI bordeaux, il est le réalisateur de la structure du site et de ses fonctionnalités ansi que de son design.
             </p>
           </div>
           <div className="col-lg-4">
@@ -73,9 +73,9 @@ class Aboutus extends Component {
             </svg>
             <h2>Jugie Kilian</h2>
             <p>
-              Devellopeur C++<br />
-              Réalisation : API , back-end , BDD<br />
-              A commencer son cursus à l'école d'ingénieur du CESI bordeaux,il est le réalisateur de l'API ansi qu'une partie de la base de données et des fonctionnalités du sites.
+              Développeur Backend<br />
+              Réalisation : API, back-end, BDD<br />
+              Etudie actuellement au CESI bordeaux, il est le réalisateur de l'API ansi que d'une partie de la base de données et des fonctionnalités du sites.
             </p>
           </div>
           <div className="col-lg-4">
@@ -97,9 +97,9 @@ class Aboutus extends Component {
             </svg>
             <h2>Rapin Thibaud</h2>
             <p>
-              Devellopeur Back-end<br />
-              Réalisation : Front et back-end , BDD<br />
-              A commencer son cursus à l'école d'ingénieur du CESI bordeaux,il est le réalisateur d'une partie de la bdd ansi que des fonctionnaliter du sites et de sont designe.
+              Développeur Backend<br />
+              Réalisation : Frontend et backend, BDD<br />
+              Etudie actuellement au CESI bordeaux, il est le réalisateur d'une partie de la bdd ansi que des fonctionnalités du site et son design.
             </p>
           </div>
         </div>
