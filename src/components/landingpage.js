@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import P_A from "../images/P_A.jpg";
-import Fab from '../images/Fab.jpg';
-import V from '../images/Visère.jpg'
-
+import Fab from "../images/Fab.jpg";
+import V from "../images/Visère.jpg";
 
 /**
  * @component
@@ -45,8 +44,15 @@ class Landing extends Component {
                 <div className="carousel-caption text-center ttext">
                   <h1>Qu’est-ce qu’un Fab Lab ?</h1>
                   <p className="t">
-                    De la contraction de l’anglais « Fabrication Laboratory » ( laboratoire de fabrication ), un Fab Lab est un espace collaboratif de conception et de fabrication de prototypes et d’objets à partir de technologies numériques mais aussi d’outils divers et variés. En plus de permettre à tous les usagers de s’approprier le matériel, le Fab Lab est aussi un lieu de vie communautaire.
-                    Vous avez la possibilité de venir échanger avec d’autres makers, proposer des projets, participer avec nous aux nombreux événements.
+                    De la contraction de l’anglais « Fabrication Laboratory » (
+                    laboratoire de fabrication ), un Fab Lab est un espace
+                    collaboratif de conception et de fabrication de prototypes
+                    et d’objets à partir de technologies numériques mais aussi
+                    d’outils divers et variés. En plus de permettre à tous les
+                    usagers de s’approprier le matériel, le Fab Lab est aussi un
+                    lieu de vie communautaire. Vous avez la possibilité de venir
+                    échanger avec d’autres makers, proposer des projets,
+                    participer avec nous aux nombreux événements.
                   </p>
                 </div>
               </div>
@@ -54,13 +60,8 @@ class Landing extends Component {
             <div className="carousel-item ">
               <div className=" text-top center ttext">
                 <h1>Outils mis a disposition</h1>
-
               </div>
-              <img
-                className="im2"
-                src={P_A}
-                alt="fablab1"
-              />
+              <img className="im2" src={P_A} alt="fablab1" />
               <svg
                 className="bd-placeholder-img"
                 width="100%"
@@ -92,10 +93,12 @@ class Landing extends Component {
               </svg>
               <div className="container">
                 <div className="carousel-caption text-center">
-                  <h1 >Projet COOP</h1>
+                  <h1>Projet COOP</h1>
                   <p>
+
                     COOP est une plateforme pédagogique et technique pour développer sur le territoire local la culture de l'innovation et le prototypage pour l'entrepreneuriat.
                     Le projet COOP est un de nos partenaires nous permettant d'ouvrir le fablab de bordeaux à toute personne ayant besoin de nos outils.
+
                   </p>
                 </div>
               </div>
@@ -131,18 +134,18 @@ class Landing extends Component {
           <div className="row featurette">
             <div className="col-md-7">
               <h2 className="featurette-heading">
-                Visière{" "}
-                <span className="text-muted">CESI</span>
+                Visière <span className="text-muted">CESI</span>
               </h2>
               <p className="lead">
+
                 Voici un exemple de visère confectionnée par le CESI.
                 Si vous aussi vous souhaitez créer vos propres visères ou même d'autres équipements de protection,
                 le cesi met à disposition des outils et des matériaux dans cet objectif.
                 Pour cela contactez nous en vous rendant sur la page contact ou via la messagerie en vous inscrivant.
+
               </p>
             </div>
             <div className="col-md-5">
-
               <img
                 className="im2"
                 src={V}
@@ -156,12 +159,13 @@ class Landing extends Component {
           <div className="row featurette">
             <div className="col-md-7 order-md-2">
               <h2 className="featurette-heading">
-                CESI{" "}
-                <span className="text-muted">FABLAB Bordeaux</span>
+                CESI <span className="text-muted">FABLAB Bordeaux</span>
               </h2>
               <p className="lead">
-                Le Fablab de bordeaux ouvre ces portes à tous ceux qui veulent se lancer dans le prototypage d'équipements de protections en fournissant plusieurs outils et matériaux gratuitement.
-                Si vous êtes interressé, n'hésitez pas à nous contacter.
+                Le Fablab de bordeaux ouvre ces portes à tous ceux qui veulent
+                se lancer dans le prototypage d'équipements de protections en
+                fournissant plusieurs outils et matériaux gratuitement. Si vous
+                êtes interressé, n'hésitez pas à nous contacter.
               </p>
             </div>
             <div className="col-md-5 order-md-1">
