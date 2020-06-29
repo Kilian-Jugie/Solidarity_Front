@@ -17,7 +17,7 @@ class Aboutus extends Component {
                 <h1 className="coover">Qui sommes nous ?</h1>
                 <p>
                   Notre équipe n'est composé que de bénévoles. Nous sommes
-                  quatre élèves du CESI Bordeaux en formation ingénieur
+                  trois élèves du CESI Bordeaux en formation d'ingénieur spécialité
                   informatique. Nos capacités professionelles et techniques nous
                   permettrons de répondre à cette situation.
                 </p>
@@ -51,7 +51,7 @@ class Aboutus extends Component {
             <p>
               Développeur Frontend <br />
               Réalisation : Structure du site, Frontend<br />
-              Etudie actuellement au CESI bordeaux, il est le réalisateur de la structure du site et de ses fonctionnalités ansi que de son design.
+              Etudie actuellement au CESI bordeaux, il est le réalisateur de la structure du site ansi que de son design.
             </p>
           </div>
           <div className="col-lg-4">
@@ -74,8 +74,8 @@ class Aboutus extends Component {
             <h2>Jugie Kilian</h2>
             <p>
               Développeur Backend<br />
-              Réalisation : API, back-end, BDD<br />
-              Etudie actuellement au CESI bordeaux, il est le réalisateur de l'API ansi que d'une partie de la base de données et des fonctionnalités du sites.
+              Réalisation : API, backend et BDD<br />
+              Etudie actuellement au CESI bordeaux, il est le concepteur de l'API ansi que d'une partie de la base de données et des fonctionnalités du sites.
             </p>
           </div>
           <div className="col-lg-4">
@@ -98,8 +98,8 @@ class Aboutus extends Component {
             <h2>Rapin Thibaud</h2>
             <p>
               Développeur Backend<br />
-              Réalisation : Frontend et backend, BDD<br />
-              Etudie actuellement au CESI bordeaux, il est le réalisateur d'une partie de la bdd ansi que des fonctionnalités du site et son design.
+              Réalisation : Frontend, backend et BDD<br />
+              Etudie actuellement au CESI bordeaux, il a réalisé une partie de la bdd ansi que des fonctionnalités du site et son design.
             </p>
           </div>
         </div>

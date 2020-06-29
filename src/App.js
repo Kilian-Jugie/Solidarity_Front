@@ -69,7 +69,7 @@ function App() {
             <Link to="/profile">Profile</Link>
             <a href="https://www.makery.info/labs-map/">Map</a>
             <Link to="/tchat">Messagerie</Link>
-            <Link to="/users">Public</Link>
+            <Link to="/users">Annuaire</Link>
           </Navigation>
         </Drawer>
         <Content>

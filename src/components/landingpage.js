@@ -95,12 +95,10 @@ class Landing extends Component {
                 <div className="carousel-caption text-center">
                   <h1>Projet COOP</h1>
                   <p>
-                    COOP est une plateforme pédagogique et technique pour
-                    développer sur le territoire local la culture de
-                    l'innovation et le prototypage pour l'entrepreneuriat. Le
-                    projet COOP est un de nos partenaire nous permettant
-                    d'ouvrir le fablab de bordeaux à toute personne ayant besoin
-                    de tels outils.
+
+                    COOP est une plateforme pédagogique et technique pour développer sur le territoire local la culture de l'innovation et le prototypage pour l'entrepreneuriat.
+                    Le projet COOP est un de nos partenaires nous permettant d'ouvrir le fablab de bordeaux à toute personne ayant besoin de nos outils.
+
                   </p>
                 </div>
               </div>
@@ -139,12 +137,12 @@ class Landing extends Component {
                 Visière <span className="text-muted">CESI</span>
               </h2>
               <p className="lead">
-                Voici un exemple de visère confectionné par le CESI. Si vous
-                aussi vous souhaitez créer vos propres visères ou même d'autres
-                équipements de protection, le cesi met à disposition des outils
-                et des matériaux dans cet objectif. Pour cela contactez nous en
-                vous rendant sur la page contact ou via la messagerie en vous
-                inscrivant.
+
+                Voici un exemple de visère confectionnée par le CESI.
+                Si vous aussi vous souhaitez créer vos propres visères ou même d'autres équipements de protection,
+                le cesi met à disposition des outils et des matériaux dans cet objectif.
+                Pour cela contactez nous en vous rendant sur la page contact ou via la messagerie en vous inscrivant.
+
               </p>
             </div>
             <div className="col-md-5">
