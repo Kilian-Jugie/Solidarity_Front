@@ -18,9 +18,9 @@ class Contact extends Component {
               style={{ height: "250px" }}
             />
             <p style={{ width: "75%", margin: "auto", paddingTop: "1em" }}>
-              Vous voici sur la page de contact , vous pouvez nous joindre en nous appelant ou en vous rendant directement à l'adresse indiquer.
-              Cepandant il serait préférable d'appeller pour prévenir de votre présence avant de vous rendre à l'adresse.<br />
-              Nous sommes heureux de pourvoir vous aider dans la réalisation de vos prototypes , si vous souhaitez devenir un de nos client ou partenaire necciter pas à vous incrire sur notre site.
+              Vous voici sur la page de contact, vous pouvez nous joindre en nous appelant ou en vous rendant directement à l'adresse indiquée.
+              Il est possible de venir au fablab sans rendez-vous mais si le fablab est déjà occupé, nous serons dans l'incapacité de vous acceuillir.<br />
+              Nous sommes heureux de pouvoir vous aider dans la réalisation de vos prototypes, si vous souhaitez devenir un de nos client ou partenaire, n'hésitez pas à vous incrire sur notre site.
             </p>
           </Cell>
           <Cell col={6}>
