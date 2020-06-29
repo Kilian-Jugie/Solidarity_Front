@@ -21,7 +21,7 @@ class Tchat extends Component {
   /**
    * @description L'historique des messages sous forme de tableau JSX
    */
-  static messageHistory = [  ];
+  static messageHistory = [];
 
   /**
    * @description Les informations pouvant être remplies sous la forme [nom] = valeur
@@ -34,22 +34,22 @@ class Tchat extends Component {
    * @async
    */
   async getMessagesHistory() {
-  Tchat.messageHistory = [ ];
+    Tchat.messageHistory = [];
     var user = await (await fetch("http://localhost:3000/api/users/" + JSON.parse(document.cookie)["user"])).json();
-    var messages = await (await fetch("http://localhost:3000/api/messages/" + user["ID"]+"?all=true")).json();
+    var messages = await (await fetch("http://localhost:3000/api/messages/" + user["ID"] + "?all=true")).json();
 
-    for(var i=0; i<messages.length; i++) {
+    for (var i = 0; i < messages.length; i++) {
       var from = "";
       var to = "";
-      if(messages[i].ID_Account === user["ID"]) {
+      if (messages[i].ID_Account === user["ID"]) {
         from = user["Email"];
-        to = (await (await fetch("http://localhost:3000/api/users/"+messages[i].ID_Account_receive)).json())["Email"];
+        to = (await (await fetch("http://localhost:3000/api/users/" + messages[i].ID_Account_receive)).json())["Email"];
       }
       else {
         to = user["Email"];
-        from = (await (await fetch("http://localhost:3000/api/users/"+messages[i].ID_Account)).json())["Email"];
+        from = (await (await fetch("http://localhost:3000/api/users/" + messages[i].ID_Account)).json())["Email"];
       }
-      Tchat.messageHistory.push(<div>Message envoyé par: {from} pour: {to}<br/>{messages[i].Content}<br/><br/></div>);
+      Tchat.messageHistory.push(<div>Message envoyé par: {from} pour: {to}<br />{messages[i].Content}<br /><br /></div>);
     }
   }
 
@@ -70,18 +70,23 @@ class Tchat extends Component {
    * @async
    */
   getLastMessage() {
-    Tchat.lastMessage = Tchat.messageHistory[Tchat.messageHistory.length-1];
+    Tchat.lastMessage = Tchat.messageHistory[Tchat.messageHistory.length - 1];
   }
 
   constructor(props) {
     super(props);
+    if (document.cookie === "undefined") {
+      alert("Seul les utilisateurs connectés ont accès à cette page");
+      window.location.assign("..");
+      return;
+    }
     this.state = { activeTab: 0 };
     this.getMessagesHistory = this.getMessagesHistory.bind(this);
     this.getLastMessage = this.getLastMessage.bind(this);
     this.setupPage();
   }
 
-  
+
   /**
    * @function
    * @description Prend en charge les changements des différents inputs de la page
@@ -121,7 +126,7 @@ class Tchat extends Component {
               })
             });
             alert('Le message a été envoyé');
-
+            window.location.reload();
           });
       });
   }
@@ -175,7 +180,7 @@ class Tchat extends Component {
             )}
             {this.state.activeTab === 1 && (
               <div>
-                <h1 className="center" >Mettre les messages </h1>
+                <h1 className="center" >Liste des messages </h1>
                 <ul>
                   {Tchat.messageHistory}
                 </ul>
@@ -213,10 +218,10 @@ class Tchat extends Component {
                         </label>
                       </div>
                       <textarea class="zoneTexte"
-                        cols="25" 
-                        rows="8" 
-                        id="msg" 
-                        name="user_message" 
+                        cols="25"
+                        rows="8"
+                        id="msg"
+                        name="user_message"
                         onChange={Tchat.handleChange}> </textarea>
                     </div>
                     <hr className="mb-4"></hr>
